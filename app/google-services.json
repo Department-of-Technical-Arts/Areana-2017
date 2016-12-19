@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "658508989793",
+    "firebase_url": "https://arenaapp17.firebaseio.com",
+    "project_id": "arenaapp17",
+    "storage_bucket": "arenaapp17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658508989793:android:5335356ed7e5d66f",
+        "android_client_info": {
+          "package_name": "bphc.tech.com.arena17"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658508989793-v6jpdajg5uhc51ekvsbl9fokrdnsi7pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxyOhzLZZe_Ek3fog1PPyTzjuUAc51OHc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

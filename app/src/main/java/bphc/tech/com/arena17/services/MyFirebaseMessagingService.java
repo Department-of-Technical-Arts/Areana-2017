@@ -1,4 +1,4 @@
-package bphc.tech.com.arena17;
+package bphc.tech.com.arena17.services;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,6 +8,9 @@ import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import bphc.tech.com.arena17.MainActivity;
+import bphc.tech.com.arena17.R;
 
 /**
  * Created by tejeshwar on 18/12/16.

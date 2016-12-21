@@ -1,4 +1,3 @@
-
 package bphc.tech.com.arena17.sets;
 
 import com.google.gson.annotations.Expose;
@@ -6,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class EventsSet {
 
-    @SerializedName("uid")
+    @SerializedName("event_id")
     @Expose
-    private String uid;
+    private String eventId;
     @SerializedName("name")
     @Expose
     private String name;
@@ -21,37 +20,42 @@ public class EventsSet {
     @SerializedName("image_url")
     @Expose
     private String imageUrl;
+    @SerializedName("gender")
+    @Expose
+    private String gender;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public EventsSet() {
     }
 
     /**
-     * 
+     *
      * @param captainName
-     * @param uid
+     * @param eventId
      * @param imageUrl
      * @param name
+     * @param gender
      * @param contact
      */
-    public EventsSet(String uid, String name, String captainName, String contact, String imageUrl) {
+    public EventsSet(String eventId, String name, String captainName, String contact, String imageUrl, String gender) {
         super();
-        this.uid = uid;
+        this.eventId = eventId;
         this.name = name;
         this.captainName = captainName;
         this.contact = contact;
         this.imageUrl = imageUrl;
+        this.gender = gender;
     }
 
-    public String getUid() {
-        return uid;
+    public String getEventId() {
+        return eventId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     public String getName() {
@@ -86,4 +90,12 @@ public class EventsSet {
         this.imageUrl = imageUrl;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }
+

@@ -12,9 +12,9 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET()
-    Call<ScheduleData> getSchedule(@Query("tag") String tag);
+    @GET("api/")
+    Call<ScheduleData> getSchedule(@Query("tag") String tag, @Query("updated_at") int updated_at);
 
-    @GET()
+    @GET("api/")
     Call<EventsData> getEvents(@Query("tag") String tag);
 }

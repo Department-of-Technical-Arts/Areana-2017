@@ -1,4 +1,3 @@
-
 package bphc.tech.com.arena17.sets;
 
 import com.google.gson.annotations.Expose;

@@ -5,7 +5,7 @@ package bphc.tech.com.arena17.app;
  */
 
 public class Constants {
-    public static final String APP_URL = "http://bits-arena.com/App/api/";
+    public static final String APP_URL = "http://bits-arena.com/App/";
     public static final String SCHEDULE_TAG = "getSchedule";
     public static final String EVENTS_TAG = "getEvents";
 }

@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class ScheduleSet {
 
-    @SerializedName("uid")
+    @SerializedName("event_id")
     @Expose
-    private String uid;
+    private String eventId;
     @SerializedName("time")
     @Expose
     private String time;
@@ -21,9 +21,9 @@ public class ScheduleSet {
     @SerializedName("event_date")
     @Expose
     private String eventDate;
-    @SerializedName("image_url")
+    @SerializedName("gender")
     @Expose
-    private String imageUrl;
+    private String gender;
 
     /**
      * No args constructor for use in serialization
@@ -35,28 +35,28 @@ public class ScheduleSet {
     /**
      * 
      * @param updatedAt
-     * @param uid
      * @param eventDate
      * @param time
-     * @param imageUrl
+     * @param eventId
      * @param sportName
+     * @param gender
      */
-    public ScheduleSet(String uid, String time, String updatedAt, String sportName, String eventDate, String imageUrl) {
+    public ScheduleSet(String eventId, String time, String updatedAt, String sportName, String eventDate, String gender) {
         super();
-        this.uid = uid;
+        this.eventId = eventId;
         this.time = time;
         this.updatedAt = updatedAt;
         this.sportName = sportName;
         this.eventDate = eventDate;
-        this.imageUrl = imageUrl;
+        this.gender = gender;
     }
 
-    public String getUid() {
-        return uid;
+    public String getEventId() {
+        return eventId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     public String getTime() {
@@ -91,12 +91,12 @@ public class ScheduleSet {
         this.eventDate = eventDate;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getGender() {
+        return gender;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 }

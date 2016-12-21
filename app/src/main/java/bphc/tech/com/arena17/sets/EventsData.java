@@ -5,18 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by tejeshwar on 20/12/16.
- */
-
 public class EventsData {
 
     @SerializedName("success")
     @Expose
-    private String success;
+    private long success;
     @SerializedName("data")
     @Expose
-    private List<EventsSet> events_data = null;
+    private List<EventsSet> data = null;
 
     /**
      * No args constructor for use in serialization
@@ -27,28 +23,29 @@ public class EventsData {
 
     /**
      *
-     * @param events_data
+     * @param data
      * @param success
      */
-    public EventsData(String success, List<EventsSet> events_data) {
+    public EventsData(long success, List<EventsSet> data) {
         super();
         this.success = success;
-        this.events_data = events_data;
+        this.data = data;
     }
 
-    public String getSuccess() {
+    public long getSuccess() {
         return success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(long success) {
         this.success = success;
     }
 
     public List<EventsSet> getData() {
-        return events_data;
+        return data;
     }
 
     public void setData(List<EventsSet> data) {
-        this.events_data = events_data;
+        this.data = data;
     }
+
 }

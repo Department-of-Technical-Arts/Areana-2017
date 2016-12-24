@@ -9,6 +9,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import bphc.tech.com.arena17.sets.EventsSet;
+import bphc.tech.com.arena17.sets.ScheduleSet;
+
 /**
  * Created by tejeshwar on 20/12/16.
  */
@@ -53,19 +56,8 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
-    /*
-    public DBManager open(){
-        dbManager = new DBManager(context);
-        db=this.dbManager.getWritableDatabase();
-       return this;
-    }*/
-
-    /*public void close(){
-        dbManager.close();
-        db.close();
-    }*/
-
     private long success = 0;
+
     public long addEventsRow(int eventid, String name, String captain, String contact, String image, int gender) {
         db = this.getWritableDatabase();
         Log.d("DB manager", eventid + "");
@@ -93,13 +85,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return success;
     }
 
-/*  private final String KEY_SCHEDULE_EVENT_ID = "eventsid";
-    private final String KEY_SCHEDULE_EVENT_NAME = "name";
-    private final String KEY_SCHEDULE_TIME = "time";
-    private final String KEY_SCHEDULE_UPDATED = "updated";
-    private final String KEY_SCHEDULE_DATE = "date";
-    private final String KEY_SCHEDULE_GENDER = "gender";*/
-
     public long addScheduleRow(int eventid, String name, long time, long updated, long date, int gender){
         db = this.getWritableDatabase();
         Log.e("add Schedue Row", eventid + "");
@@ -126,6 +111,50 @@ public class DBHelper extends SQLiteOpenHelper {
         return events;
     }
 
+    public ArrayList<EventsSet> getEventData(int eventid){
+        db = this.getWritableDatabase();
+        Log.e("event data", eventid + "");
+        ArrayList<EventsSet> eventsSets = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ EVENTS_TABLE +" WHERE " + KEY_EVENTS_ID + " = '"+ eventid +"'",null);
+        if (cursor.moveToFirst()) {
+            do {
+                eventsSets.add(new EventsSet(
+                        eventid,
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getInt(6)
+                ));
+            }while (cursor.moveToNext());
+            cursor.close();
+        }
+        db.close();
+        return  eventsSets;
+    }
+
+    public ArrayList<ScheduleSet> getScheduleData(int eventid){
+        db = this.getWritableDatabase();
+        Log.e("schedule data", eventid + "");
+        ArrayList<ScheduleSet> scheduleSets = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ SCHEDULE_TABLE +" WHERE " + KEY_SCHEDULE_EVENT_ID + " = '"+ eventid +"'",null);
+
+        if (cursor.moveToFirst()){
+            do {
+                scheduleSets.add(new ScheduleSet(
+                        eventid,
+                        cursor.getLong(3),
+                        cursor.getLong(4),
+                        cursor.getString(2),
+                        cursor.getLong(5),
+                        cursor.getInt(6)
+                ));
+            }while (cursor.moveToNext());
+            cursor.close();
+        }
+        db.close();
+        return scheduleSets;
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

@@ -8,22 +8,22 @@ public class ScheduleSet {
 
     @SerializedName("event_id")
     @Expose
-    private String eventId;
+    private int eventId;
     @SerializedName("time")
     @Expose
-    private String time;
+    private long time;
     @SerializedName("updated_at")
     @Expose
-    private String updatedAt;
+    private long updatedAt;
     @SerializedName("sport_name")
     @Expose
     private String sportName;
     @SerializedName("event_date")
     @Expose
-    private String eventDate;
+    private long eventDate;
     @SerializedName("gender")
     @Expose
-    private String gender;
+    private int gender;
 
     /**
      * No args constructor for use in serialization
@@ -32,46 +32,27 @@ public class ScheduleSet {
     public ScheduleSet() {
     }
 
-    /**
-     * 
-     * @param updatedAt
-     * @param eventDate
-     * @param time
-     * @param eventId
-     * @param sportName
-     * @param gender
-     */
-    public ScheduleSet(String eventId, String time, String updatedAt, String sportName, String eventDate, String gender) {
-        super();
-        this.eventId = eventId;
-        this.time = time;
-        this.updatedAt = updatedAt;
-        this.sportName = sportName;
-        this.eventDate = eventDate;
-        this.gender = gender;
-    }
-
-    public String getEventId() {
+    public int getEventId() {
         return eventId;
     }
 
-    public void setEventId(String eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
-    public String getUpdatedAt() {
+    public long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(long updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -83,20 +64,39 @@ public class ScheduleSet {
         this.sportName = sportName;
     }
 
-    public String getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
-    }
-
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
+    public long getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(long eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    /**
+     * 
+     * @param updatedAt
+     * @param eventDate
+
+     * @param time
+     * @param eventId
+     * @param sportName
+     * @param gender
+     */
+
+    public ScheduleSet(int eventId, long time, long updatedAt, String sportName, long eventDate, int gender) {
+        this.eventId = eventId;
+        this.time = time;
+        this.updatedAt = updatedAt;
+        this.sportName = sportName;
+        this.eventDate = eventDate;
+        this.gender = gender;
+    }
 }

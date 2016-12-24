@@ -51,16 +51,16 @@ public class EventsUpdateService extends IntentService {
 //                    Log.e(TAG, Integer.parseInt(eventsSet.get(i).getGender())+"");
 
                     successID = helper.addEventIdRow(
-                            Integer.parseInt(eventsSet.get(i).getEventId()),
+                            eventsSet.get(i).getEventId(),
                             eventsSet.get(i).getName());
 
                     successEvent = helper.addEventsRow(
-                            Integer.parseInt(eventsSet.get(i).getEventId()),
+                            eventsSet.get(i).getEventId(),
                             eventsSet.get(i).getName(),
                             eventsSet.get(i).getCaptainName(),
                             eventsSet.get(i).getContact(),
                             eventsSet.get(i).getImageUrl(),
-                            Integer.parseInt(eventsSet.get(i).getGender()));
+                            eventsSet.get(i).getGender());
 
                     Log.d(TAG,successID +"        "+ successEvent);
                 }
@@ -83,12 +83,12 @@ public class EventsUpdateService extends IntentService {
                 for (int i=0;i<scheduleSets.size();i++){
 //                    Log.e(TAG, Integer.parseInt(scheduleSets.get(i).getGender())+"");
                     success = helper.addScheduleRow(
-                            Integer.parseInt(scheduleSets.get(i).getEventId()),
+                            scheduleSets.get(i).getEventId(),
                             scheduleSets.get(i).getSportName(),
-                            Long.parseLong(scheduleSets.get(i).getTime()),
-                            Long.parseLong(scheduleSets.get(i).getUpdatedAt()),
-                            Long.parseLong(scheduleSets.get(i).getEventDate()),
-                            Integer.parseInt(scheduleSets.get(i).getGender()));
+                            scheduleSets.get(i).getTime(),
+                            scheduleSets.get(i).getUpdatedAt(),
+                            scheduleSets.get(i).getEventDate(),
+                            scheduleSets.get(i).getGender());
                     Log.d(TAG,success+"");
                 }
             }

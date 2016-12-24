@@ -7,7 +7,7 @@ public class EventsSet {
 
     @SerializedName("event_id")
     @Expose
-    private String eventId;
+    private int eventId;
     @SerializedName("name")
     @Expose
     private String name;
@@ -22,7 +22,7 @@ public class EventsSet {
     private String imageUrl;
     @SerializedName("gender")
     @Expose
-    private String gender;
+    private int gender;
 
     /**
      * No args constructor for use in serialization
@@ -31,30 +31,11 @@ public class EventsSet {
     public EventsSet() {
     }
 
-    /**
-     *
-     * @param captainName
-     * @param eventId
-     * @param imageUrl
-     * @param name
-     * @param gender
-     * @param contact
-     */
-    public EventsSet(String eventId, String name, String captainName, String contact, String imageUrl, String gender) {
-        super();
-        this.eventId = eventId;
-        this.name = name;
-        this.captainName = captainName;
-        this.contact = contact;
-        this.imageUrl = imageUrl;
-        this.gender = gender;
-    }
-
-    public String getEventId() {
+    public int getEventId() {
         return eventId;
     }
 
-    public void setEventId(String eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 
@@ -90,11 +71,31 @@ public class EventsSet {
         this.imageUrl = imageUrl;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    /**
+     *
+     * @param captainName
+     * @param eventId
+     * @param imageUrl
+     * @param name
+     * @param gender
+     * @param contact
+     */
+
+    public EventsSet(int eventId, String name, String captainName, String contact, String imageUrl, int gender) {
+
+        this.eventId = eventId;
+        this.name = name;
+        this.captainName = captainName;
+        this.contact = contact;
+        this.imageUrl = imageUrl;
         this.gender = gender;
     }
 }

@@ -97,19 +97,24 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
         }
         //// TODO: 25-12-2016 get the pdf link from the events!
         else if(view.getId()==R.id.pdf_textView){
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getPDFLink));
-//            startActivity(browserIntent);
+        /*  if(event.getPdfLink.isEmpty()){
+                //error
+            }
+            else{
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getPDFLink));
+                startActivity(browserIntent);
+            }*/
         }
     }
 
     private void fillDetailsData(EventsSet event){
         if(!event.getCaptainName().isEmpty()){
-            contact_number.setText(event.getContact());
+            contact_number.setText(("+91 "+ event.getContact()));
         }
         if(!event.getCaptainName().isEmpty()){
             contact_name.setText((event.getCaptainName()+", Captain"));
         }
-        //need another if statement!!
+        //need another if statement!! PRIZE MONEY
         prize.setText("Get JSON response for this!");
     }
 }

@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.List;
@@ -96,8 +98,6 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Inside catch");
         }
 
-
-
         nestedScrollView = (NestedScrollView) findViewById (R.id.NestedScrollView);
         nestedScrollView.setFillViewport (true); // needed for the nestedScrollView to be displayed.
     }
@@ -112,10 +112,23 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_star,menu);
+        MenuItem item = menu.findItem(R.id.menu_star);
+        // TODO: 25-12-2016 add appropriate ic for star
+        //if isFavorite(eventID){setIcon selected} **
+        //item.setIcon(R.drawable.ic_star_selected);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Pager Adapter
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {

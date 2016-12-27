@@ -42,23 +42,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         startService(new Intent(this, EventsUpdateService.class));
 
-/*        DBHelper helper = new DBHelper(this);
-        ArrayList<EventsSet> eventsSets = helper.getEventData(1);
-        ArrayList<ScheduleSet> scheduleSets = helper.getScheduleData(1);
-
-        for (int i=0 ;i<eventsSets.size();i++){
-            Log.e(TAG,eventsSets.get(i).getName() + "\n" +
-                    eventsSets.get(i).getCaptainName()+ "\n"+
-                    eventsSets.get(i).getGender() + "\n" +
-                    eventsSets.get(i).getImageUrl() + "\n");
-        }
-
-        for (int i=0 ;i<scheduleSets.size();i++){
-            Log.e(TAG,scheduleSets.get(i).getSportName() + "\n" +
-                    scheduleSets.get(i).getTime()+ "\n"+
-                    scheduleSets.get(i).getEventDate() + "\n" +
-                    scheduleSets.get(i).getUpdatedAt() + "\n");
-        }*/
+/*
+        DBHelper helper = new DBHelper(this);
+        helper.toggleFavourite(1);
+*/
 
         mCircleMenuLayout = (CircularMenuLayout) findViewById(R.id.id_menulayout);
         mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);

@@ -156,6 +156,33 @@ public class DBHelper extends SQLiteOpenHelper {
         return scheduleSets;
     }
 
+    public int isFavourite(int eventid){
+        int fav = 0;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_FAVOURITE + " FROM "+ EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID +" = '"+eventid+"'",null);
+        if (cursor.moveToNext()){
+            do {
+                fav = cursor.getInt(0);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return fav;
+    }
+
+    public void toggleFavourite(int eventid){
+        db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        if (isFavourite(eventid) == 0){
+            cv.put(KEY_EVENTS_FAVOURITE,1);
+            db.update(EVENTS_TABLE,cv,KEY_EVENTS_ID+ " = '" +eventid+"' ",null);
+        }else {
+            cv.put(KEY_EVENTS_FAVOURITE,0);
+            db.update(EVENTS_TABLE,cv,KEY_EVENTS_ID+ " = '" +eventid+"' ",null);
+        }
+        db.close();
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 

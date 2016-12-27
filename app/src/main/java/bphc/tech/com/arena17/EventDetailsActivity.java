@@ -88,11 +88,11 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Error");
         } else {
             collapsingToolbar.setTitle(event.getName());
-            Picasso.with(this)
-                    .load("YOUR IMAGE URL HERE")
-                    //.placeholder(DRAWABLE RESOURCE)   // optional
-                    //.error(DRAWABLE RESOURCE)      // optional
-                    .into(eventImage);
+//            Picasso.with(this)
+//                    .load("YOUR IMAGE URL HERE")
+//                    //.placeholder(DRAWABLE RESOURCE)   // optional
+//                    //.error(DRAWABLE RESOURCE)      // optional
+//                    .into(eventImage);
         }
     }
 
@@ -131,6 +131,13 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        } else {
+            // TODO: 25-12-2016 add appropriate ic for star on click
+            //if isFavorite(eventID){setIcon selected} **
+            //item.setIcon(R.drawable.ic_star_selected);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -169,6 +176,11 @@ public class EventDetailsActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
 

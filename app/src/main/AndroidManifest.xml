@@ -18,7 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EventDetailsActivity"/>
+
+        <activity
+            android:name=".EventDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventSelectingActivity" />
+        </activity>
 
         <service android:name=".services.MyFirebaseMessagingService">
             <intent-filter>

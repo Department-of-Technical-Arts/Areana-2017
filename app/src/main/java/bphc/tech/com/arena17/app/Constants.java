@@ -8,4 +8,5 @@ public class Constants {
     public static final String APP_URL = "http://bits-arena.com/App/";
     public static final String SCHEDULE_TAG = "getSchedule";
     public static final String EVENTS_TAG = "getEvents";
+    public static final String Arg_Event_ID = "eventID";
 }

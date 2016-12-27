@@ -23,9 +23,7 @@ public class EventScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_event_schedule, container, false);
-
-        return v;
+        return inflater.inflate(R.layout.fragment_event_schedule, container, false);
     }
 
     @Override
@@ -35,7 +33,6 @@ public class EventScheduleFragment extends Fragment {
         container = (CardView) view.findViewById(R.id.event_schedule_container);
         // Do something
 
-        TextView textView = new TextView(getActivity());
 
     }
 }

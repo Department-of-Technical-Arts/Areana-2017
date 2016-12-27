@@ -50,6 +50,7 @@ public class EventSelectingActivity extends AppCompatActivity {
         items.add(new EventItem("Tennis",R.drawable.tennis));
         items.add(new EventItem("Basketball",R.drawable.basketball));
         items.add(new EventItem("Football",R.drawable.football));
+        items.add(new EventItem("Weight Lifting",R.drawable.weightlifting));
         return items;
     }
 

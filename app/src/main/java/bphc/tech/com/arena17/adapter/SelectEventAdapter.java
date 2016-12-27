@@ -1,6 +1,7 @@
 package bphc.tech.com.arena17.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import bphc.tech.com.arena17.EventDetailsActivity;
 import bphc.tech.com.arena17.R;
 import bphc.tech.com.arena17.sets.EventItem;
 
@@ -57,7 +59,8 @@ public class SelectEventAdapter extends RecyclerView.Adapter<SelectEventAdapter.
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(),"hello", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(),getAdapterPosition()+"", Toast.LENGTH_SHORT).show();
+            view.getContext().startActivity(new Intent(view.getContext().getApplicationContext(), EventDetailsActivity.class).putExtra("eventid",getAdapterPosition()));
         }
     }
 }

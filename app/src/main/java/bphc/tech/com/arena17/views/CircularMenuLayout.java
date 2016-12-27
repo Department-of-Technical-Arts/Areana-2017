@@ -27,7 +27,7 @@ public class CircularMenuLayout extends ViewGroup
     /**
      * 菜单的中心child的默认尺寸
      */
-    private float RADIO_DEFAULT_CENTERITEM_DIMENSION = 1 / 5f;
+    private float RADIO_DEFAULT_CENTERITEM_DIMENSION = 1 / 4f;
     /**
      * 该容器的内边距,无视padding属性，如需边距请用该变量
      */

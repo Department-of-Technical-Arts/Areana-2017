@@ -14,21 +14,27 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MAIN ACTIVITY";
     private CircularMenuLayout mCircleMenuLayout;
 
+    /*private String[] mItemTexts = new String[] {
+            "Home",
+            "App Credits",
+            "Contact us",
+            "Favourites",
+            "Reach Campus" ,
+            "Sponsors" };*/
+
     private String[] mItemTexts = new String[] {
-            "app credits",
-            "contact us",
-            "campus guide",
-            "campus map",
-            "hello" ,
-            "fest" };
+            "",
+            "",
+            "",
+            "",
+            ""};
 
     private int[] mItemImgs = new int[] {
-            R.drawable.home_mbank_1_normal,
-            R.drawable.home_mbank_2_normal,
-            R.drawable.home_mbank_3_normal,
-            R.drawable.home_mbank_4_normal,
-            R.drawable.home_mbank_5_normal,
-            R.drawable.home_mbank_6_normal };
+            R.drawable.contactus,
+            R.drawable.map,
+            R.drawable.sponsors,
+            R.drawable.favorites,
+            R.drawable.appcredits};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +68,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void itemClick(View view, int pos)
             {
-                Toast.makeText(MainActivity.this, mItemTexts[pos],
+                Toast.makeText(MainActivity.this, pos+"",
                         Toast.LENGTH_SHORT).show();
             }
             @Override
             public void itemCenterClick(View view)
             {
-                Toast.makeText(MainActivity.this,
-                        "you can do something just like ccb  ",
-                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,EventSelectingActivity.class));
             }
         });
     }

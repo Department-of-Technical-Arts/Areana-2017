@@ -50,7 +50,7 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
         contact_number.setClickable(true);
         contact_number.setOnClickListener(this);
         // Image View
-        view.findViewById(R.id.ic_dailer_1).setOnClickListener(this);
+//        view.findViewById(R.id.ic_dailer_1).setOnClickListener(this); // activity not launching for image view
         // PDF Download
         view.findViewById(R.id.pdf_textView).setOnClickListener(this);
 
@@ -88,7 +88,7 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
         // when the individual ic_dialer images are clicked. (Bit messy But works!! )
         else if((view.getId()==R.id.ic_dailer_1)){
             try {
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", (String)(((TextView)getView().findViewById(R.id.contact_no_1)).getText()), null)));
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", (String)(contact_number.getText()), null)));
             } catch (android.content.ActivityNotFoundException ex) {
                 Toast.makeText(getActivity(), "Could not find an activity to place the call.", Toast.LENGTH_SHORT).show();
             } catch (Exception e){

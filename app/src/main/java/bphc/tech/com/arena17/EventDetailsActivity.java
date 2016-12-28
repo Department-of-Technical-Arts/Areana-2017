@@ -51,8 +51,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         // Setup Tab Layout
-        tabLayout.addTab(tabLayout.newTab().setText("Details"));
-        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Details"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         Picasso.with(this)
@@ -177,7 +177,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 case 0:
                     return "Details";
                 case 1:
-                    return "Fixtures";
+                    return "Schedule";
             }
             return null;
         }

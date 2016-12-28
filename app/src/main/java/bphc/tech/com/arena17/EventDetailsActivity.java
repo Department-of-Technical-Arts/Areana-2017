@@ -37,6 +37,8 @@ public class EventDetailsActivity extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbar;
     NestedScrollView nestedScrollView;
     EventsSet event;
+    int eventID;
+    DBHelper helper;
     KenBurnsView eventImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +100,8 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     private void getAndFillEventData() {
         try {
-            DBHelper helper = new DBHelper(this);
-            int eventID = getIntent().getIntExtra(Constants.Arg_Event_ID, -1);
+            helper = new DBHelper(this);
+            eventID = getIntent().getIntExtra(Constants.Arg_Event_ID, -1);
             if (eventID != -1) {
                 List<EventsSet> eventList = helper.getEventData(eventID);
                 event = eventList.get(0);
@@ -109,7 +111,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(this, "Error getting event", Toast.LENGTH_SHORT).show();
-            collapsingToolbar.setTitle("Inside catch");
+            collapsingToolbar.setTitle("Error");
         }
     }
 
@@ -118,12 +120,11 @@ public class EventDetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_star, menu);
         MenuItem item = menu.findItem(R.id.menu_star);
-        if (item.getIcon() == null) {
-            item.setVisible(false);
+        if (helper.isFavourite(eventID)==0) {
+            item.setIcon(R.drawable.ic_star_not_selected);
+
         } else {
-            // TODO: 25-12-2016 add appropriate ic for star
-            //if isFavorite(eventID){setIcon selected} **
-            //item.setIcon(R.drawable.ic_star_selected);
+            item.setIcon(R.drawable.ic_star_selected);
         }
 
         return true;
@@ -133,10 +134,14 @@ public class EventDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
-        } else {
-            // TODO: 25-12-2016 add appropriate ic for star on click
-            //if isFavorite(eventID){setIcon selected} **
-            //item.setIcon(R.drawable.ic_star_selected);
+        } else if (item.getItemId() == R.id.menu_star) {
+            if ((item.getIcon().getConstantState()).equals(getResources().getDrawable(R.drawable.ic_star_not_selected).getConstantState())) {
+                item.setIcon(R.drawable.ic_star_selected);
+                helper.toggleFavourite(eventID);
+            } else {
+                item.setIcon(R.drawable.ic_star_not_selected);
+                helper.toggleFavourite(eventID);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

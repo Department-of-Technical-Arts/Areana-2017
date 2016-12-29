@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.services.EventsUpdateService;
 import bphc.tech.com.arena17.views.CircularMenuLayout;
 
@@ -42,10 +43,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         startService(new Intent(this, EventsUpdateService.class));
 
-/*
         DBHelper helper = new DBHelper(this);
         helper.toggleFavourite(1);
-*/
 
         mCircleMenuLayout = (CircularMenuLayout) findViewById(R.id.id_menulayout);
         mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);

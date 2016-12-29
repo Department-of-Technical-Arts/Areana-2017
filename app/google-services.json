@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "658508989793",
-    "firebase_url": "https://arenaapp17.firebaseio.com",
-    "project_id": "arenaapp17",
-    "storage_bucket": "arenaapp17.appspot.com"
+    "project_number": "1064862049136",
+    "firebase_url": "https://arena2017-68be8.firebaseio.com",
+    "project_id": "arena2017-68be8",
+    "storage_bucket": "arena2017-68be8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:658508989793:android:5335356ed7e5d66f",
+        "mobilesdk_app_id": "1:1064862049136:android:5335356ed7e5d66f",
         "android_client_info": {
           "package_name": "bphc.tech.com.arena17"
         }
       },
       "oauth_client": [
         {
-          "client_id": "658508989793-v6jpdajg5uhc51ekvsbl9fokrdnsi7pa.apps.googleusercontent.com",
+          "client_id": "1064862049136-lna63iqk3qg1pjp3j9vf6u2a7ebk361n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bphc.tech.com.arena17",
+            "certificate_hash": "08F468224D0D79915243E8A7A7A2AC729B9B969E"
+          }
+        },
+        {
+          "client_id": "1064862049136-vtrrgkk2vu5mh2i60f1v1lvdsk3cfsab.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCxyOhzLZZe_Ek3fog1PPyTzjuUAc51OHc"
+          "current_key": "AIzaSyASbcL_YoqUi_0ts0yzuwXBrnqz5eygmkk"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064862049136-vtrrgkk2vu5mh2i60f1v1lvdsk3cfsab.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

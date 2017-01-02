@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,9 @@ public class EventScheduleFragment extends Fragment {
     }
 
 
-    CardView container;
-    TextView display;
     ScheduleSet scheduleSet;
     int eventID;
+    RecyclerView recyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,16 +42,13 @@ public class EventScheduleFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //container = (CardView) view.findViewById(R.id.event_schedule_container);
-        //display = (TextView) view.findViewById(R.id.event_schedule_display);
-
         try {
             getEventSet();
         } catch (Exception e) {
             Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
         }
 
-//        display.setText(getTime(scheduleSet.getEventDate()));
+
     }
     private void getEventSet(){
         DBHelper helper = new DBHelper(getActivity());
@@ -68,5 +65,7 @@ public class EventScheduleFragment extends Fragment {
         return dateFormat.format(calendar.getTime());
 
     }
+
+
 
 }

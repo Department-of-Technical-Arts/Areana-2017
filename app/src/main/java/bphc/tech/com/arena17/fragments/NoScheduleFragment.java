@@ -1,4 +1,4 @@
-package bphc.tech.com.arena17;
+package bphc.tech.com.arena17.fragments;
 
 
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import bphc.tech.com.arena17.R;
 
 /**
  * A simple {@link Fragment} subclass.

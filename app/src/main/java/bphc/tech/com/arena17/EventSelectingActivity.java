@@ -88,6 +88,8 @@ public class EventSelectingActivity extends AppCompatActivity {
         items.add(new EventItem("Tennis", R.drawable.tennis, 9));
         items.add(new EventItem("Basketball", R.drawable.basketball, 5));
         items.add(new EventItem("Football", R.drawable.football, 2));
+        items.add(new EventItem("Power Lifting",R.drawable.weightlifting,18));
+        items.add(new EventItem("Snooker",R.drawable.billiards,19));
         return items;
     }
 

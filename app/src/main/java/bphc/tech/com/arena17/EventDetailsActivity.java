@@ -7,13 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.flaviofaria.kenburnsview.KenBurnsView;
@@ -23,6 +21,8 @@ import java.util.List;
 
 import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
+import bphc.tech.com.arena17.fragments.EventDetailsFragment;
+import bphc.tech.com.arena17.fragments.EventScheduleFragment;
 import bphc.tech.com.arena17.sets.EventsSet;
 
 /**

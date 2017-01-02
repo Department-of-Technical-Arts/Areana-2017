@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center|bottom"
-    tools:context="bphc.tech.com.arena17.MainActivity">
+    tools:context="bphc.tech.com.arena17.HomeActivity">
 
     <FrameLayout
         android:background="@drawable/homescreen"

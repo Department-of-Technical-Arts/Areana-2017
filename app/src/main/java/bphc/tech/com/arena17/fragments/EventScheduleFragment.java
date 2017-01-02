@@ -1,4 +1,4 @@
-package bphc.tech.com.arena17;
+package bphc.tech.com.arena17.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import bphc.tech.com.arena17.R;
 import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.ScheduleSet;

@@ -9,7 +9,7 @@ import android.support.v4.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import bphc.tech.com.arena17.MainActivity;
+import bphc.tech.com.arena17.HomeActivity;
 import bphc.tech.com.arena17.R;
 
 /**
@@ -20,7 +20,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);

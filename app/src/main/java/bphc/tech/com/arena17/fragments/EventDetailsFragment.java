@@ -1,4 +1,4 @@
-package bphc.tech.com.arena17;
+package bphc.tech.com.arena17.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +15,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import bphc.tech.com.arena17.R;
 import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.EventsSet;

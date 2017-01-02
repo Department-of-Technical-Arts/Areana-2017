@@ -10,7 +10,7 @@ import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.services.EventsUpdateService;
 import bphc.tech.com.arena17.views.CircularMenuLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     public static final String TAG = "MAIN ACTIVITY";
     private CircularMenuLayout mCircleMenuLayout;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         startService(new Intent(this, EventsUpdateService.class));
 
         DBHelper helper = new DBHelper(this);
@@ -54,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void itemClick(View view, int pos)
             {
-                Toast.makeText(MainActivity.this, pos+"",
+                Toast.makeText(HomeActivity.this, pos+"",
                         Toast.LENGTH_SHORT).show();
             }
             @Override
             public void itemCenterClick(View view)
             {
-                startActivity(new Intent(MainActivity.this,EventSelectingActivity.class));
+                startActivity(new Intent(HomeActivity.this,EventSelectingActivity.class));
             }
         });
     }

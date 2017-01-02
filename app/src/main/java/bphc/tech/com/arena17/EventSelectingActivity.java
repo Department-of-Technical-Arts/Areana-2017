@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.ArrayList;
 
 import bphc.tech.com.arena17.adapter.SelectEventAdapter;
@@ -16,10 +20,21 @@ public class EventSelectingActivity extends AppCompatActivity {
     private GridLayoutManager layoutManager;
     private SelectEventAdapter adapter;
 
+    AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_selecting);
+
+
+        MobileAds.initialize(getApplicationContext(), getResources().getString(R.string.banner_ads_id));
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest
+                .Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
+
         ArrayList<EventItem> items = getAllItemList();
         event_select = (RecyclerView) findViewById(R.id.events_select_recycler);
         layoutManager = new GridLayoutManager(this,3);
@@ -30,6 +45,29 @@ public class EventSelectingActivity extends AppCompatActivity {
         event_select.setAdapter(adapter);
     }
 
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
     public ArrayList<EventItem> getAllItemList(){
 
         ArrayList<EventItem> items = new ArrayList<>();

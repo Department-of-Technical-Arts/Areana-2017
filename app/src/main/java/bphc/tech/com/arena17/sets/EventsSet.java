@@ -1,3 +1,4 @@
+
 package bphc.tech.com.arena17.sets;
 
 import com.google.gson.annotations.Expose;
@@ -20,15 +21,50 @@ public class EventsSet {
     @SerializedName("image_url")
     @Expose
     private String imageUrl;
+    @SerializedName("pdf_url")
+    @Expose
+    private String pdfUrl;
+    @SerializedName("longitude")
+    @Expose
+    private String longitude;
+    @SerializedName("latitude")
+    @Expose
+    private String latitude;
+    @SerializedName("updated_at")
+    @Expose
+    private long updatedAt;
     @SerializedName("gender")
     @Expose
     private int gender;
+    private int favourite;
+
+    public int getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(int favourite) {
+        this.favourite = favourite;
+    }
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public EventsSet() {
+    }
+
+    public EventsSet(int eventId, String name, String captainName, String contact, String imageUrl, String pdfUrl, String longitude, String latitude, long updatedAt, int gender, int favourite) {
+        this.eventId = eventId;
+        this.name = name;
+        this.captainName = captainName;
+        this.contact = contact;
+        this.imageUrl = imageUrl;
+        this.pdfUrl = pdfUrl;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.updatedAt = updatedAt;
+        this.gender = gender;
+        this.favourite = favourite;
     }
 
     public int getEventId() {
@@ -71,6 +107,38 @@ public class EventsSet {
         this.imageUrl = imageUrl;
     }
 
+    public String getPdfUrl() {
+        return pdfUrl;
+    }
+
+    public void setPdfUrl(String pdfUrl) {
+        this.pdfUrl = pdfUrl;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public int getGender() {
         return gender;
     }
@@ -78,25 +146,4 @@ public class EventsSet {
     public void setGender(int gender) {
         this.gender = gender;
     }
-
-    /**
-     *
-     * @param captainName
-     * @param eventId
-     * @param imageUrl
-     * @param name
-     * @param gender
-     * @param contact
-     */
-
-    public EventsSet(int eventId, String name, String captainName, String contact, String imageUrl, int gender) {
-
-        this.eventId = eventId;
-        this.name = name;
-        this.captainName = captainName;
-        this.contact = contact;
-        this.imageUrl = imageUrl;
-        this.gender = gender;
-    }
 }
-

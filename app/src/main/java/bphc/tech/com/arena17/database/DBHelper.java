@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 import bphc.tech.com.arena17.sets.EventsSet;
@@ -42,6 +44,10 @@ public class DBHelper extends SQLiteOpenHelper {
     private final String KEY_EVENTS_IMAGE = "image";
     private final String KEY_EVENTS_GENDER = "gender";
     private final String KEY_EVENTS_FAVOURITE = "favourite";
+    private final String KEY_EVENTS_PDF = "pdf";
+    private final String KEY_EVENTS_LONGITUDE = "longitude";
+    private final String KEY_EVENTS_LATITUDE = "latitude";
+    private final String KEY_EVENTS_UPDATED = "updated";
 
     //COLUMN NAMES FOR SCHEDULE TABLE
     private final String KEY_SCHEDULE_EVENT_ID = "eventsid";
@@ -51,14 +57,22 @@ public class DBHelper extends SQLiteOpenHelper {
     private final String KEY_SCHEDULE_DATE = "date";
     private final String KEY_SCHEDULE_GENDER = "gender";
 
-
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
     private long success = 0;
 
-    public long addEventsRow(int eventid, String name, String captain, String contact, String image, int gender) {
+    public long addEventsRow(int eventid,
+                             String name,
+                             String captain,
+                             String contact,
+                             String image,
+                             String pdf,
+                             String longitude,
+                             String latitude,
+                             long updated,
+                             int gender) {
         db = this.getWritableDatabase();
         Log.d("DB manager", eventid + "");
         ContentValues cv = new ContentValues();
@@ -69,6 +83,10 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(KEY_EVENTS_ID, eventid);
         cv.put(KEY_EVENTS_IMAGE, image);
         cv.put(KEY_EVENTS_FAVOURITE,0);
+        cv.put(KEY_EVENTS_PDF,pdf);
+        cv.put(KEY_EVENTS_LONGITUDE,longitude);
+        cv.put(KEY_EVENTS_LATITUDE,latitude);
+        cv.put(KEY_EVENTS_UPDATED,updated);
         success = db.insert(EVENTS_TABLE, null, cv);
         db.close();
         return success;
@@ -124,7 +142,12 @@ public class DBHelper extends SQLiteOpenHelper {
                         cursor.getString(3),
                         cursor.getString(4),
                         cursor.getString(5),
-                        cursor.getInt(6)
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getLong(9),
+                        cursor.getInt(10),
+                        cursor.getInt(11)
                 ));
             }while (cursor.moveToNext());
             cursor.close();
@@ -185,6 +208,54 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public LatLng getLocation(int eventid){
+        LatLng location = null;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_LATITUDE + " , " + KEY_EVENTS_LONGITUDE +" FROM "+ EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID +" = '"+eventid+"'", null);
+        if (cursor.moveToFirst()){
+            location = new LatLng(Double.parseDouble(cursor.getString(0)),Double.parseDouble(cursor.getString(1)));
+        }
+        cursor.close();
+        db.close();
+        return location;
+    }
+
+    public String getPDF(int eventid){
+        String pdf =null;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_PDF + " FROM "+ EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID +" = '"+eventid+"'", null);
+        if (cursor.moveToFirst()){
+            pdf = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return pdf;
+    }
+
+    public String getImage(int eventid){
+        String image = null;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_IMAGE + " FROM "+ EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID +" = '"+eventid+"'", null);
+        if (cursor.moveToFirst()){
+            image = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return image;
+    }
+
+    public long getLastEventUpdatedAt(){
+        long updatedat = 0;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_UPDATED + " FROM "+ EVENTS_TABLE+" ORDER BY "+ KEY_EVENTS_UPDATED +" DESC LIMIT 1", null);
+        if (cursor.moveToFirst()){
+            updatedat = cursor.getLong(0);
+        }
+        cursor.close();
+        db.close();
+        return updatedat;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -199,6 +270,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 KEY_EVENTS_CAPTAIN + " TEXT UNIQUE, " +
                 KEY_EVENTS_CONTACT + " TEXT, " +
                 KEY_EVENTS_IMAGE + " TEXT, " +
+                KEY_EVENTS_PDF + " TEXT, " +
+                KEY_EVENTS_LONGITUDE + " TEXT, " +
+                KEY_EVENTS_LATITUDE + "TEXT, " +
+                KEY_SCHEDULE_UPDATED + " INTEGER, " +
                 KEY_EVENTS_GENDER + " INTEGER NOT NULL, " +
                 KEY_EVENTS_FAVOURITE + " INTEGER NOT NULL); ";
 
@@ -214,61 +289,6 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_MAIN_TABLE);
         sqLiteDatabase.execSQL(CREATE_EVENTS_TABLE);
         sqLiteDatabase.execSQL(CREATE_SCHEDULE_TABLE);
-        /*ContentValues cv = new ContentValues();
-        cv.put(KEY_MAIN_TABLE_ID,1);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Cricket");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,2);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Football");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,3);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Volleyball");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,4);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Badminton");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,5);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Basketball");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,6);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Kabaddi");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,7);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Throwball");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,8);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Chess");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,9);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Tennis");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,10);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Table Tennis");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,11);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Squash");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,12);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Hockey");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,13);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Carrom");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,14);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Billiards\\/Pool");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,15);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Athletics");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,16);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Body Building");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,17);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Duathlon");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);
-        cv.put(KEY_MAIN_TABLE_ID,18);
-        cv.put(KEY_MAIN_EVENT_NAMES,"Power Lifting");
-        sqLiteDatabase.insert(EVENTS_ID_TABLE,null,cv);*/
     }
 
     @Override

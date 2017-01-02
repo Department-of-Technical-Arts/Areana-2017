@@ -60,6 +60,10 @@ public class EventsUpdateService extends IntentService {
                             eventsSet.get(i).getCaptainName(),
                             eventsSet.get(i).getContact(),
                             eventsSet.get(i).getImageUrl(),
+                            eventsSet.get(i).getPdfUrl(),
+                            eventsSet.get(i).getLongitude(),
+                            eventsSet.get(i).getLatitude(),
+                            eventsSet.get(i).getUpdatedAt(),
                             eventsSet.get(i).getGender());
 
                     Log.d(TAG,successID +"        "+ successEvent);

@@ -71,24 +71,23 @@ public class EventSelectingActivity extends AppCompatActivity {
     public ArrayList<EventItem> getAllItemList(){
 
         ArrayList<EventItem> items = new ArrayList<>();
-        items.add(new EventItem("Duathlon",R.drawable.duathlon));
-        items.add(new EventItem("Kabaddi",R.drawable.kabaddi));
-        items.add(new EventItem("Hockey",R.drawable.hockey));
-        items.add(new EventItem("Body Building",R.drawable.bodybuilding));
-        items.add(new EventItem("Athletics",R.drawable.athletics));
-        items.add(new EventItem("Carrom",R.drawable.carrom));
-        items.add(new EventItem("Billiards",R.drawable.billiards));
-        items.add(new EventItem("Squash",R.drawable.squash));
-        items.add(new EventItem("Table Tennis",R.drawable.tabletennis));
-        items.add(new EventItem("Chess",R.drawable.chess));
-        items.add(new EventItem("Badminton",R.drawable.badminton));
-        items.add(new EventItem("Cricket",R.drawable.cricket));
-        items.add(new EventItem("Volleyball",R.drawable.volleyball));
-        items.add(new EventItem("ThrowBall",R.drawable.throwball));
-        items.add(new EventItem("Tennis",R.drawable.tennis));
-        items.add(new EventItem("Basketball",R.drawable.basketball));
-        items.add(new EventItem("Football",R.drawable.football));
-        items.add(new EventItem("Weight Lifting",R.drawable.weightlifting));
+        items.add(new EventItem("Duathlon", R.drawable.duathlon, 17));
+        items.add(new EventItem("Kabaddi", R.drawable.kabaddi, 6));
+        items.add(new EventItem("Hockey", R.drawable.hockey, 12));
+        items.add(new EventItem("Body Building", R.drawable.bodybuilding, 16));
+        items.add(new EventItem("Athletics", R.drawable.athletics, 15));
+        items.add(new EventItem("Carrom", R.drawable.carrom, 13));
+        items.add(new EventItem("Billiards", R.drawable.billiards, 14));
+        items.add(new EventItem("Squash", R.drawable.squash, 11));
+        items.add(new EventItem("Table Tennis", R.drawable.tabletennis, 10));
+        items.add(new EventItem("Chess", R.drawable.chess, 8));
+        items.add(new EventItem("Badminton", R.drawable.badminton, 4));
+        items.add(new EventItem("Cricket", R.drawable.cricket, 1));
+        items.add(new EventItem("Volleyball", R.drawable.volleyball, 3));
+        items.add(new EventItem("ThrowBall", R.drawable.throwball, 7));
+        items.add(new EventItem("Tennis", R.drawable.tennis, 9));
+        items.add(new EventItem("Basketball", R.drawable.basketball, 5));
+        items.add(new EventItem("Football", R.drawable.football, 2));
         return items;
     }
 

@@ -194,14 +194,15 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void toggleFavourite(int eventid){
+
         ContentValues cv = new ContentValues();
         if (isFavourite(eventid) == 0){
-            cv.put(KEY_EVENTS_FAVOURITE,1);
             db = this.getWritableDatabase();
+            cv.put(KEY_EVENTS_FAVOURITE,1);
             db.update(EVENTS_TABLE,cv,KEY_EVENTS_ID+ " = '" +eventid+"' ",null);
         }else {
-            cv.put(KEY_EVENTS_FAVOURITE,0);
             db = this.getWritableDatabase();
+            cv.put(KEY_EVENTS_FAVOURITE,0);
             db.update(EVENTS_TABLE,cv,KEY_EVENTS_ID+ " = '" +eventid+"' ",null);
         }
         db.close();

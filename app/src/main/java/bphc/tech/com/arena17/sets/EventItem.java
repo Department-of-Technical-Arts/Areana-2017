@@ -8,10 +8,12 @@ public class EventItem {
 
     String name;
     int image;
+    int id;
 
-    public EventItem(String name, int image) {
+    public EventItem(String name, int image, int id) {
         this.name = name;
         this.image = image;
+        this.id = id;
     }
 
     public String getName() {
@@ -29,4 +31,6 @@ public class EventItem {
     public void setImage(int image) {
         this.image = image;
     }
+
+    public int getId(){return id;}
 }

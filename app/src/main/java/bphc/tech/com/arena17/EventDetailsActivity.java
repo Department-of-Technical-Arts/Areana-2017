@@ -37,6 +37,8 @@ public class EventDetailsActivity extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbar;
     NestedScrollView nestedScrollView;
     EventsSet event;
+    int eventID;
+    DBHelper helper;
     KenBurnsView eventImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         // Setup Tab Layout
-        tabLayout.addTab(tabLayout.newTab().setText("Details"));
-        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Details"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         Picasso.with(this)
@@ -88,18 +90,18 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Error");
         } else {
             collapsingToolbar.setTitle(event.getName());
-            Picasso.with(this)
-                    .load("YOUR IMAGE URL HERE")
-                    //.placeholder(DRAWABLE RESOURCE)   // optional
-                    //.error(DRAWABLE RESOURCE)      // optional
-                    .into(eventImage);
+//            Picasso.with(this)
+//                    .load("YOUR IMAGE URL HERE")
+//                    //.placeholder(DRAWABLE RESOURCE)   // optional
+//                    //.error(DRAWABLE RESOURCE)      // optional
+//                    .into(eventImage);
         }
     }
 
     private void getAndFillEventData() {
         try {
-            DBHelper helper = new DBHelper(this);
-            int eventID = getIntent().getIntExtra(Constants.Arg_Event_ID, -1);
+            helper = new DBHelper(this);
+            eventID = getIntent().getIntExtra(Constants.Arg_Event_ID, -1);
             if (eventID != -1) {
                 List<EventsSet> eventList = helper.getEventData(eventID);
                 event = eventList.get(0);
@@ -109,7 +111,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(this, "Error getting event", Toast.LENGTH_SHORT).show();
-            collapsingToolbar.setTitle("Inside catch");
+            collapsingToolbar.setTitle("Error");
         }
     }
 
@@ -118,12 +120,11 @@ public class EventDetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_star, menu);
         MenuItem item = menu.findItem(R.id.menu_star);
-        if (item.getIcon() == null) {
-            item.setVisible(false);
+        if (helper.isFavourite(eventID)==0) {
+            item.setIcon(R.drawable.ic_star_not_selected);
+
         } else {
-            // TODO: 25-12-2016 add appropriate ic for star
-            //if isFavorite(eventID){setIcon selected} **
-            //item.setIcon(R.drawable.ic_star_selected);
+            item.setIcon(R.drawable.ic_star_selected);
         }
 
         return true;
@@ -131,6 +132,17 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        } else if (item.getItemId() == R.id.menu_star) {
+            if ((item.getIcon().getConstantState()).equals(getResources().getDrawable(R.drawable.ic_star_not_selected).getConstantState())) {
+                item.setIcon(R.drawable.ic_star_selected);
+                helper.toggleFavourite(eventID);
+            } else {
+                item.setIcon(R.drawable.ic_star_not_selected);
+                helper.toggleFavourite(eventID);
+            }
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -165,10 +177,15 @@ public class EventDetailsActivity extends AppCompatActivity {
                 case 0:
                     return "Details";
                 case 1:
-                    return "Fixtures";
+                    return "Schedule";
             }
             return null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
 

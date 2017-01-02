@@ -36,6 +36,17 @@ public class EventsSet {
     @SerializedName("gender")
     @Expose
     private int gender;
+
+    private int prize;
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public void setPrize(int prize) {
+        this.prize = prize;
+    }
+
     private int favourite;
 
     public int getFavourite() {
@@ -53,7 +64,7 @@ public class EventsSet {
     public EventsSet() {
     }
 
-    public EventsSet(int eventId, String name, String captainName, String contact, String imageUrl, String pdfUrl, String longitude, String latitude, long updatedAt, int gender, int favourite) {
+    public EventsSet(int eventId, String name, String captainName, String contact, String imageUrl, String pdfUrl, String longitude, String latitude, long updatedAt, int gender, int prize, int favourite) {
         this.eventId = eventId;
         this.name = name;
         this.captainName = captainName;
@@ -64,6 +75,7 @@ public class EventsSet {
         this.latitude = latitude;
         this.updatedAt = updatedAt;
         this.gender = gender;
+        this.prize = prize;
         this.favourite = favourite;
     }
 

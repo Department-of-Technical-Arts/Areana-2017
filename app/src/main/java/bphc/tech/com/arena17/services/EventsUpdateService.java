@@ -6,10 +6,10 @@ import android.util.Log;
 
 import java.util.List;
 
-import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.api.ApiClient;
 import bphc.tech.com.arena17.api.ApiInterface;
 import bphc.tech.com.arena17.app.Constants;
+import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.EventsData;
 import bphc.tech.com.arena17.sets.EventsSet;
 import bphc.tech.com.arena17.sets.ScheduleData;
@@ -64,6 +64,7 @@ public class EventsUpdateService extends IntentService {
                             eventsSet.get(i).getLongitude(),
                             eventsSet.get(i).getLatitude(),
                             eventsSet.get(i).getUpdatedAt(),
+                            eventsSet.get(i).getPrize(),
                             eventsSet.get(i).getGender());
 
                     Log.d(TAG,successID +"        "+ successEvent);
@@ -101,5 +102,6 @@ public class EventsUpdateService extends IntentService {
                 Log.e(TAG,"Check your internet connection");
             }
         });
+
     }
 }

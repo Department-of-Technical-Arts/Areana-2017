@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.services.EventsUpdateService;
 import bphc.tech.com.arena17.views.CircularMenuLayout;
 
@@ -43,9 +42,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         startService(new Intent(this, EventsUpdateService.class));
 
-        DBHelper helper = new DBHelper(this);
-        helper.toggleFavourite(1);
-
         mCircleMenuLayout = (CircularMenuLayout) findViewById(R.id.id_menulayout);
         mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
 
@@ -54,6 +50,28 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void itemClick(View view, int pos)
             {
+                switch (pos){
+                    case 0:
+                        //contacts
+                        startActivity(new Intent(HomeActivity.this,ContactsActivity.class));
+                        break;
+                    case 1:
+                        //campus map
+                        startActivity(new Intent(HomeActivity.this,MapsActivity.class));
+                        break;
+                    case 2:
+                        //sponsers
+                        break;
+                    case 3:
+                        //favourites
+                        break;
+                    case 4:
+                        //app credits
+                        break;
+                    default:
+                        //lite
+                        break;
+                }
                 Toast.makeText(HomeActivity.this, pos+"",
                         Toast.LENGTH_SHORT).show();
             }

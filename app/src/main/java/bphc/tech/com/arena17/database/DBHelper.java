@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import bphc.tech.com.arena17.sets.ContactItem;
 import bphc.tech.com.arena17.sets.EventsSet;
 import bphc.tech.com.arena17.sets.ScheduleSet;
 
@@ -48,6 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private final String KEY_EVENTS_LONGITUDE = "longitude";
     private final String KEY_EVENTS_LATITUDE = "latitude";
     private final String KEY_EVENTS_UPDATED = "updated";
+    private final String KEY_EVENTS_PRIZE = "prize";
 
     //COLUMN NAMES FOR SCHEDULE TABLE
     private final String KEY_SCHEDULE_EVENT_ID = "eventsid";
@@ -72,6 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
                              String longitude,
                              String latitude,
                              long updated,
+                             int prize,
                              int gender) {
         db = this.getWritableDatabase();
         Log.d("DB manager", eventid + "");
@@ -87,6 +90,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(KEY_EVENTS_LONGITUDE,longitude);
         cv.put(KEY_EVENTS_LATITUDE,latitude);
         cv.put(KEY_EVENTS_UPDATED,updated);
+        cv.put(KEY_EVENTS_PRIZE,prize);
         success = db.insert(EVENTS_TABLE, null, cv);
         db.close();
         return success;
@@ -119,12 +123,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> getAllEvents(){
-        String columns[] = {KEY_MAIN_EVENT_NAMES};
+        db = this.getWritableDatabase();
         ArrayList<String> events = new ArrayList<>();
-        Cursor cursor = db.query(EVENTS_ID_TABLE,columns,null,null,null,null,null,null);
-        do {
-            events.add(cursor.getString(0));
-        }while (cursor.moveToNext());
+        Cursor cursor = db.rawQuery("SELECT "+ KEY_MAIN_EVENT_NAMES+ " FROM " + EVENTS_ID_TABLE , null);
+        if (cursor.moveToFirst()) {
+            do {
+                events.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
         cursor.close();
         return events;
     }
@@ -147,7 +153,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         cursor.getString(8),
                         cursor.getLong(9),
                         cursor.getInt(10),
-                        cursor.getInt(11)
+                        cursor.getInt(11),
+                        cursor.getInt(12)
                 ));
             }while (cursor.moveToNext());
             cursor.close();
@@ -256,6 +263,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return updatedat;
     }
 
+    public ArrayList<ContactItem> getEventContacts(int eventid){
+        ArrayList<ContactItem> contacts = new ArrayList<>();
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_CAPTAIN +" , "+KEY_EVENTS_CONTACT + " , " + KEY_EVENTS_GENDER + " FROM "+ EVENTS_TABLE+" ORDER BY "+ KEY_EVENTS_UPDATED +" DESC LIMIT 1", null);
+        if (cursor.moveToFirst()){
+            do {
+                contacts.add(new ContactItem(cursor.getString(0),cursor.getString(1),cursor.getInt(2)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return contacts;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -266,14 +287,15 @@ public class DBHelper extends SQLiteOpenHelper {
         final String CREATE_EVENTS_TABLE = "CREATE TABLE IF NOT EXISTS " + EVENTS_TABLE + " (" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_EVENTS_ID + " INTEGER NOT NULL REFERENCES "+EVENTS_ID_TABLE+"("+KEY_MAIN_TABLE_ID+"), " +
-                KEY_EVENTS_NAME + " TEXT NOT NULL, " +
-                KEY_EVENTS_CAPTAIN + " TEXT UNIQUE, " +
+                KEY_EVENTS_NAME + " TEXT UNIQUE NOT NULL, " +
+                KEY_EVENTS_CAPTAIN + " TEXT, " +
                 KEY_EVENTS_CONTACT + " TEXT, " +
                 KEY_EVENTS_IMAGE + " TEXT, " +
                 KEY_EVENTS_PDF + " TEXT, " +
                 KEY_EVENTS_LONGITUDE + " TEXT, " +
-                KEY_EVENTS_LATITUDE + "TEXT, " +
+                KEY_EVENTS_LATITUDE + " TEXT, " +
                 KEY_SCHEDULE_UPDATED + " INTEGER, " +
+                KEY_EVENTS_PRIZE + " INTEGER, " +
                 KEY_EVENTS_GENDER + " INTEGER NOT NULL, " +
                 KEY_EVENTS_FAVOURITE + " INTEGER NOT NULL); ";
 

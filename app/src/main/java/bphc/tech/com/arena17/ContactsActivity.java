@@ -76,9 +76,9 @@ public class ContactsActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "OrganisersFragment";
+                    return "Organisers";
                 case 1:
-                    return "CaptainsFragment";
+                    return "Captains";
             }
             return null;
         }

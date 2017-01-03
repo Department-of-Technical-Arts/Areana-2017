@@ -282,8 +282,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 KEY_MEDAL_BRONZE + " INTEGER); ";
 
         final String CREATE_FEEDS_TABLE = "CREATE TABLE IF NOT EXISTS " + FEED_TABLE + " (" +
-                KEY_ID + " INTEGER AUTOINCREMENT, " +
-                KEY_FEED_ID + " TEXT PRIMARY KEY, " +
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_FEED_ID + " TEXT UNIQUE, " +
                 KEY_FEED_TITLE + " TEXT, " +
                 KEY_FEED_MESSAGE + " TEXT, " +
                 KEY_FEED_TIME + " INTEGER); ";
@@ -406,6 +406,8 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EVENTS_ID_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EVENTS_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SCHEDULE_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MEDAL_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FEED_TABLE);
         onCreate(sqLiteDatabase);
     }
 }

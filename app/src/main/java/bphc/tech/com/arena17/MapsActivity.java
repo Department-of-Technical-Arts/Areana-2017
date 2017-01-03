@@ -22,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
 import com.quinny898.library.persistentsearch.SearchBox;
@@ -145,7 +146,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         IconGenerator factory = new IconGenerator(getApplicationContext());
         factory.setStyle(factory.STYLE_BLUE);
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+//        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(
+                this, R.raw.map_style);
+        mMap.setMapStyle(style);
         for (int i = 0; i < Constants.names.length; i++) {
             Bitmap icon = factory.makeIcon(Constants.names[i]);
             LatLng location = new LatLng(Constants.latitudes[i], Constants.longitudes[i]);

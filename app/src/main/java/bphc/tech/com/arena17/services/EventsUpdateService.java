@@ -12,6 +12,8 @@ import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.EventsData;
 import bphc.tech.com.arena17.sets.EventsSet;
+import bphc.tech.com.arena17.sets.MedalData;
+import bphc.tech.com.arena17.sets.MedalSet;
 import bphc.tech.com.arena17.sets.ScheduleData;
 import bphc.tech.com.arena17.sets.ScheduleSet;
 import retrofit2.Call;
@@ -89,12 +91,15 @@ public class EventsUpdateService extends IntentService {
 //                    Log.e(TAG, Integer.parseInt(scheduleSets.get(i).getGender())+"");
                     success = helper.addScheduleRow(
                             scheduleSets.get(i).getEventId(),
-                            scheduleSets.get(i).getSportName(),
                             scheduleSets.get(i).getTime(),
                             scheduleSets.get(i).getUpdatedAt(),
+                            scheduleSets.get(i).getSportName(),
                             scheduleSets.get(i).getEventDate(),
-                            scheduleSets.get(i).getGender());
-                    Log.d(TAG,success+"");
+                            scheduleSets.get(i).getGender(),
+                            scheduleSets.get(i).getDescription(),
+                            scheduleSets.get(i).getVenue(),
+                            scheduleSets.get(i).getRound());
+                    Log.e(TAG,success+"");
                 }
             }
             @Override
@@ -103,5 +108,24 @@ public class EventsUpdateService extends IntentService {
             }
         });
 
+        final Call<MedalData> medalDataCall = apiService.getResults(Constants.RESULTS_TAG,0);
+        medalDataCall.enqueue(new Callback<MedalData>() {
+            @Override
+            public void onResponse(Call<MedalData> call, Response<MedalData> response) {
+                DBHelper helper = new DBHelper(getApplicationContext());
+                List<MedalSet> medalSets = response.body().getData();
+                Log.e(TAG,medalSets.size()+"");
+                long success;
+                for (int i = 0 ; i<medalSets.size();i++){
+                    success = helper.addMedalsRow(medalSets.get(i).getCollege(),medalSets.get(i).getGold(),medalSets.get(i).getSilver(),medalSets.get(i).getBronze());
+                    Log.e(TAG,success+"");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MedalData> call, Throwable t) {
+                Log.e(TAG,"Check your internet connection");
+            }
+        });
     }
 }

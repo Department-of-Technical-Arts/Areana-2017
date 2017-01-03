@@ -1,4 +1,3 @@
-
 package bphc.tech.com.arena17.sets;
 
 import com.google.gson.annotations.Expose;
@@ -24,12 +23,54 @@ public class ScheduleSet {
     @SerializedName("gender")
     @Expose
     private int gender;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("venue")
+    @Expose
+    private String venue;
+    @SerializedName("round")
+    @Expose
+    private String round;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public ScheduleSet() {
+    }
+
+    /**
+     *
+     * @param updatedAt
+     * @param eventDate
+     * @param time
+     * @param eventId
+     * @param description
+     * @param sportName
+     * @param gender
+     * @param round
+     * @param venue
+     */
+
+    public ScheduleSet(int eventId,
+                       long time,
+                       long updatedAt,
+                       String sportName,
+                       long eventDate,
+                       int gender,
+                       String description,
+                       String venue,
+                       String round) {
+        this.eventId = eventId;
+        this.time = time;
+        this.updatedAt = updatedAt;
+        this.sportName = sportName;
+        this.eventDate = eventDate;
+        this.gender = gender;
+        this.description = description;
+        this.venue = venue;
+        this.round = round;
     }
 
     public int getEventId() {
@@ -64,14 +105,6 @@ public class ScheduleSet {
         this.sportName = sportName;
     }
 
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
     public long getEventDate() {
         return eventDate;
     }
@@ -80,23 +113,35 @@ public class ScheduleSet {
         this.eventDate = eventDate;
     }
 
-    /**
-     * 
-     * @param updatedAt
-     * @param eventDate
+    public int getGender() {
+        return gender;
+    }
 
-     * @param time
-     * @param eventId
-     * @param sportName
-     * @param gender
-     */
-
-    public ScheduleSet(int eventId, long time, long updatedAt, String sportName, long eventDate, int gender) {
-        this.eventId = eventId;
-        this.time = time;
-        this.updatedAt = updatedAt;
-        this.sportName = sportName;
-        this.eventDate = eventDate;
+    public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public String getRound() {
+        return round;
+    }
+
+    public void setRound(String round) {
+        this.round = round;
     }
 }

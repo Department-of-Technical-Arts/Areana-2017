@@ -32,6 +32,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private final String EVENTS_ID_TABLE = "maintable";
     private final String EVENTS_TABLE = "events";
     private final String SCHEDULE_TABLE = "schedule";
+    private final String MEDAL_TABLE = "medals";
+    private final String FEED_TABLE = "feed";
 
     //Column Names for Main Table
     private final String KEY_MAIN_TABLE_ID = "eventid";
@@ -53,17 +55,56 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //COLUMN NAMES FOR SCHEDULE TABLE
     private final String KEY_SCHEDULE_EVENT_ID = "eventsid";
-    private final String KEY_SCHEDULE_EVENT_NAME = "name";
     private final String KEY_SCHEDULE_TIME = "time";
     private final String KEY_SCHEDULE_UPDATED = "updated";
+    private final String KEY_SCHEDULE_EVENT_NAME = "name";
     private final String KEY_SCHEDULE_DATE = "date";
     private final String KEY_SCHEDULE_GENDER = "gender";
+    private final String KEY_SCHEDULE_DESCRIPTION = "description";
+    private final String KEY_SCHEDULE_VENUE = "venue";
+    private final String KEY_SCHEDULE_ROUND = "round";
+
+    //COLUMN NAMES FOR MEDAL TALLY TABLE
+    private final String KEY_MEDAL_COLLEGE_NAME = "name";
+    private final String KEY_MEDAL_GOLD = "gold";
+    private final String KEY_MEDAL_SILVER = "silver";
+    private final String KEY_MEDAL_BRONZE = "bronze";
+
+    //COLUMN NAMES FOR FEED TABLE
+    private final String KEY_FEED_ID = "feedid";
+    private final String KEY_FEED_TITLE = "title";
+    private final String KEY_FEED_MESSAGE = "message";
+    private final String KEY_FEED_TIME = "time";
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
     private long success = 0;
+
+    public long addMedalsRow(String college, int gold,int silver,int bronze){
+        db = this.getWritableDatabase();
+        ContentValues cv =new ContentValues();
+        cv.put(KEY_MEDAL_COLLEGE_NAME,college);
+        cv.put(KEY_MEDAL_GOLD,gold);
+        cv.put(KEY_MEDAL_SILVER,silver);
+        cv.put(KEY_MEDAL_BRONZE,bronze);
+        success = db.insert(MEDAL_TABLE,null,cv);
+        db.close();
+        return success;
+    }
+
+    public long addFeedRow(String feedid, String title, String message, long time){
+        db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_FEED_ID,feedid);
+        cv.put(KEY_FEED_TITLE,title);
+        cv.put(KEY_FEED_MESSAGE,message);
+        cv.put(KEY_FEED_TIME,time);
+        success = db.insert(FEED_TABLE,null,cv);
+        db.close();
+        return success;
+    }
 
     public long addEventsRow(int eventid,
                              String name,
@@ -107,7 +148,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return success;
     }
 
-    public long addScheduleRow(int eventid, String name, long time, long updated, long date, int gender){
+    public long addScheduleRow(int eventid,
+                               long time,
+                               long updated,
+                               String name,
+                               long date,
+                               int gender,
+                               String description,
+                               String venue,
+                               String round){
         db = this.getWritableDatabase();
         Log.e("add Schedue Row", eventid + "");
         ContentValues cv =new ContentValues();
@@ -117,6 +166,9 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(KEY_SCHEDULE_UPDATED,updated);
         cv.put(KEY_SCHEDULE_DATE,date);
         cv.put(KEY_SCHEDULE_GENDER,gender);
+        cv.put(KEY_SCHEDULE_DESCRIPTION,description);
+        cv.put(KEY_SCHEDULE_VENUE,venue);
+        cv.put(KEY_SCHEDULE_ROUND,round);
         success = db.insert(SCHEDULE_TABLE, null , cv);
         db.close();
         return success;
@@ -168,22 +220,79 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.e("schedule data", eventid + "");
         ArrayList<ScheduleSet> scheduleSets = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM "+ SCHEDULE_TABLE +" WHERE " + KEY_SCHEDULE_EVENT_ID + " = '"+ eventid +"'",null);
-
         if (cursor.moveToFirst()){
             do {
                 scheduleSets.add(new ScheduleSet(
                         eventid,
+                        cursor.getLong(2),
                         cursor.getLong(3),
-                        cursor.getLong(4),
-                        cursor.getString(2),
+                        cursor.getString(4),
                         cursor.getLong(5),
-                        cursor.getInt(6)
+                        cursor.getInt(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9)
                 ));
             }while (cursor.moveToNext());
             cursor.close();
         }
         db.close();
         return scheduleSets;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
+        final String CREATE_MAIN_TABLE = "CREATE TABLE IF NOT EXISTS " + EVENTS_ID_TABLE + " (" +
+                KEY_MAIN_TABLE_ID + " INTEGER PRIMARY KEY, " +
+                KEY_MAIN_EVENT_NAMES + " TEXT NOT NULL); ";
+
+        final String CREATE_EVENTS_TABLE = "CREATE TABLE IF NOT EXISTS " + EVENTS_TABLE + " (" +
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_EVENTS_ID + " INTEGER NOT NULL REFERENCES "+EVENTS_ID_TABLE+"("+KEY_MAIN_TABLE_ID+"), " +
+                KEY_EVENTS_NAME + " TEXT UNIQUE NOT NULL, " +
+                KEY_EVENTS_CAPTAIN + " TEXT, " +
+                KEY_EVENTS_CONTACT + " TEXT, " +
+                KEY_EVENTS_IMAGE + " TEXT, " +
+                KEY_EVENTS_PDF + " TEXT, " +
+                KEY_EVENTS_LONGITUDE + " TEXT, " +
+                KEY_EVENTS_LATITUDE + " TEXT, " +
+                KEY_SCHEDULE_UPDATED + " INTEGER, " +
+                KEY_EVENTS_PRIZE + " INTEGER, " +
+                KEY_EVENTS_GENDER + " INTEGER NOT NULL, " +
+                KEY_EVENTS_FAVOURITE + " INTEGER NOT NULL); ";
+
+        final String CREATE_SCHEDULE_TABLE = "CREATE TABLE IF NOT EXISTS " + SCHEDULE_TABLE + " (" +
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_SCHEDULE_EVENT_ID + " INTEGER NOT NULL REFERENCES "+EVENTS_ID_TABLE+"("+KEY_MAIN_TABLE_ID+"), " +
+                KEY_SCHEDULE_TIME + " INTEGER, " +
+                KEY_SCHEDULE_UPDATED + " INTEGER, " +
+                KEY_SCHEDULE_EVENT_NAME + " TEXT NOT NULL, " +
+                KEY_SCHEDULE_DATE + " INTEGER, " +
+                KEY_SCHEDULE_GENDER + " INTEGER NOT NULL, " +
+                KEY_SCHEDULE_DESCRIPTION + " TEXT, " +
+                KEY_SCHEDULE_VENUE + " TEXT, " +
+                KEY_SCHEDULE_ROUND + " TEXT); ";
+
+        final String CREATE_MEDAL_TABLE = "CREATE TABLE IF NOT EXISTS " + MEDAL_TABLE + " (" +
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_MEDAL_COLLEGE_NAME + " TEXT NOT NULL, " +
+                KEY_MEDAL_GOLD + " INTEGER, " +
+                KEY_MEDAL_SILVER + " INTEGER, " +
+                KEY_MEDAL_BRONZE + " INTEGER); ";
+
+        final String CREATE_FEEDS_TABLE = "CREATE TABLE IF NOT EXISTS " + FEED_TABLE + " (" +
+                KEY_ID + " INTEGER AUTOINCREMENT, " +
+                KEY_FEED_ID + " TEXT PRIMARY KEY, " +
+                KEY_FEED_TITLE + " TEXT, " +
+                KEY_FEED_MESSAGE + " TEXT, " +
+                KEY_FEED_TIME + " INTEGER); ";
+
+        sqLiteDatabase.execSQL(CREATE_MAIN_TABLE);
+        sqLiteDatabase.execSQL(CREATE_EVENTS_TABLE);
+        sqLiteDatabase.execSQL(CREATE_SCHEDULE_TABLE);
+        sqLiteDatabase.execSQL(CREATE_MEDAL_TABLE);
+        sqLiteDatabase.execSQL(CREATE_FEEDS_TABLE);
     }
 
     public int isFavourite(int eventid){
@@ -277,40 +386,19 @@ public class DBHelper extends SQLiteOpenHelper {
         return contacts;
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
-        final String CREATE_MAIN_TABLE = "CREATE TABLE IF NOT EXISTS " + EVENTS_ID_TABLE + " (" +
-                KEY_MAIN_TABLE_ID + " INTEGER PRIMARY KEY, " +
-                KEY_MAIN_EVENT_NAMES + " TEXT NOT NULL); ";
-
-        final String CREATE_EVENTS_TABLE = "CREATE TABLE IF NOT EXISTS " + EVENTS_TABLE + " (" +
-                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                KEY_EVENTS_ID + " INTEGER NOT NULL REFERENCES "+EVENTS_ID_TABLE+"("+KEY_MAIN_TABLE_ID+"), " +
-                KEY_EVENTS_NAME + " TEXT UNIQUE NOT NULL, " +
-                KEY_EVENTS_CAPTAIN + " TEXT, " +
-                KEY_EVENTS_CONTACT + " TEXT, " +
-                KEY_EVENTS_IMAGE + " TEXT, " +
-                KEY_EVENTS_PDF + " TEXT, " +
-                KEY_EVENTS_LONGITUDE + " TEXT, " +
-                KEY_EVENTS_LATITUDE + " TEXT, " +
-                KEY_SCHEDULE_UPDATED + " INTEGER, " +
-                KEY_EVENTS_PRIZE + " INTEGER, " +
-                KEY_EVENTS_GENDER + " INTEGER NOT NULL, " +
-                KEY_EVENTS_FAVOURITE + " INTEGER NOT NULL); ";
-
-        final String CREATE_SCHEDULE_TABLE = "CREATE TABLE IF NOT EXISTS " + SCHEDULE_TABLE + " (" +
-                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                KEY_SCHEDULE_EVENT_ID + " INTEGER NOT NULL REFERENCES "+EVENTS_ID_TABLE+"("+KEY_MAIN_TABLE_ID+"), " +
-                KEY_SCHEDULE_EVENT_NAME + " TEXT NOT NULL, " +
-                KEY_SCHEDULE_TIME + " INTEGER, " +
-                KEY_SCHEDULE_UPDATED + " INTEGER, " +
-                KEY_SCHEDULE_DATE + " INTEGER, " +
-                KEY_SCHEDULE_GENDER + " INTEGER NOT NULL); ";
-
-        sqLiteDatabase.execSQL(CREATE_MAIN_TABLE);
-        sqLiteDatabase.execSQL(CREATE_EVENTS_TABLE);
-        sqLiteDatabase.execSQL(CREATE_SCHEDULE_TABLE);
+    public int[] getFavouriteEvents(){
+        int[] eventids = {0};
+        int i =0;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_ID + " FROM " + EVENTS_TABLE + " WHERE " + KEY_EVENTS_FAVOURITE + " = '1'" ,null);
+        if (cursor.moveToFirst()){
+            do {
+                eventids[i] = cursor.getInt(0);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return eventids;
     }
 
     @Override

@@ -26,6 +26,7 @@ import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.fragments.EventDetailsFragment;
 import bphc.tech.com.arena17.fragments.EventScheduleFragment;
+import bphc.tech.com.arena17.fragments.NoScheduleFragment;
 import bphc.tech.com.arena17.sets.EventsSet;
 
 /**
@@ -93,7 +94,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             Picasso.with(this)
                     .load(event.getImageUrl())
                     .placeholder(R.drawable.ic_default_event_image)   // optional
-                    .error(R.drawable.default_event_image)      // optional
+                    .error(R.drawable.ic_default_event_image)      // optional
                     .into(eventImage);
         }
     }
@@ -175,7 +176,20 @@ public class EventDetailsActivity extends AppCompatActivity {
             //return PlaceholderFragment.newInstance(position + 1);
             switch (position){
                 case 0: return new EventDetailsFragment();
-                case 1: return new EventScheduleFragment();
+                case 1: {
+                    try{
+                        DBHelper helper1 = new DBHelper(EventDetailsActivity.this);
+                        int eventID1 = getIntent().getIntExtra(Constants.Arg_Event_ID, -1);
+                        if(helper1.getScheduleData(eventID1).size()!=0){
+                            return new EventScheduleFragment();
+                        }
+                        else {return new NoScheduleFragment();}
+                    }catch (Exception e){
+                        return new NoScheduleFragment();
+                    }
+
+
+                }
             }
             return null;
         }

@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 import bphc.tech.com.arena17.sets.ContactItem;
 import bphc.tech.com.arena17.sets.EventsSet;
+import bphc.tech.com.arena17.sets.FeedItem;
+import bphc.tech.com.arena17.sets.MedalSet;
+import bphc.tech.com.arena17.sets.PrizeItem;
 import bphc.tech.com.arena17.sets.ScheduleSet;
 
 /**
@@ -118,7 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
                              int prize,
                              int gender) {
         db = this.getWritableDatabase();
-        Log.d("DB manager", eventid + "");
+        Log.e("DB manager", eventid + "  " + name + "  " + captain + "  " + contact + "  "+ image + "  " + pdf + "  " + longitude + "  " + latitude + "  "+ updated + " " + prize + "  " + gender);
         ContentValues cv = new ContentValues();
         cv.put(KEY_EVENTS_NAME, name);
         cv.put(KEY_EVENTS_CAPTAIN, captain);
@@ -212,7 +215,7 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
         db.close();
-        return  eventsSets;
+        return eventsSets;
     }
 
     public ArrayList<ScheduleSet> getScheduleData(int eventid){
@@ -250,14 +253,14 @@ public class DBHelper extends SQLiteOpenHelper {
         final String CREATE_EVENTS_TABLE = "CREATE TABLE IF NOT EXISTS " + EVENTS_TABLE + " (" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_EVENTS_ID + " INTEGER NOT NULL REFERENCES "+EVENTS_ID_TABLE+"("+KEY_MAIN_TABLE_ID+"), " +
-                KEY_EVENTS_NAME + " TEXT UNIQUE NOT NULL, " +
+                KEY_EVENTS_NAME + " TEXT NOT NULL, " +
                 KEY_EVENTS_CAPTAIN + " TEXT, " +
                 KEY_EVENTS_CONTACT + " TEXT, " +
                 KEY_EVENTS_IMAGE + " TEXT, " +
                 KEY_EVENTS_PDF + " TEXT, " +
                 KEY_EVENTS_LONGITUDE + " TEXT, " +
                 KEY_EVENTS_LATITUDE + " TEXT, " +
-                KEY_SCHEDULE_UPDATED + " INTEGER, " +
+                KEY_EVENTS_UPDATED+ " INTEGER UNIQUE, " +
                 KEY_EVENTS_PRIZE + " INTEGER, " +
                 KEY_EVENTS_GENDER + " INTEGER NOT NULL, " +
                 KEY_EVENTS_FAVOURITE + " INTEGER NOT NULL); ";
@@ -266,7 +269,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_SCHEDULE_EVENT_ID + " INTEGER NOT NULL REFERENCES "+EVENTS_ID_TABLE+"("+KEY_MAIN_TABLE_ID+"), " +
                 KEY_SCHEDULE_TIME + " INTEGER, " +
-                KEY_SCHEDULE_UPDATED + " INTEGER, " +
+                KEY_SCHEDULE_UPDATED + " INTEGER UNIQUE, " +
                 KEY_SCHEDULE_EVENT_NAME + " TEXT NOT NULL, " +
                 KEY_SCHEDULE_DATE + " INTEGER, " +
                 KEY_SCHEDULE_GENDER + " INTEGER NOT NULL, " +
@@ -276,7 +279,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         final String CREATE_MEDAL_TABLE = "CREATE TABLE IF NOT EXISTS " + MEDAL_TABLE + " (" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                KEY_MEDAL_COLLEGE_NAME + " TEXT NOT NULL, " +
+                KEY_MEDAL_COLLEGE_NAME + " TEXT UNIQUE NOT NULL, " +
                 KEY_MEDAL_GOLD + " INTEGER, " +
                 KEY_MEDAL_SILVER + " INTEGER, " +
                 KEY_MEDAL_BRONZE + " INTEGER); ";
@@ -293,6 +296,16 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_SCHEDULE_TABLE);
         sqLiteDatabase.execSQL(CREATE_MEDAL_TABLE);
         sqLiteDatabase.execSQL(CREATE_FEEDS_TABLE);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EVENTS_ID_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EVENTS_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SCHEDULE_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MEDAL_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FEED_TABLE);
+        onCreate(sqLiteDatabase);
     }
 
     public int isFavourite(int eventid){
@@ -375,7 +388,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<ContactItem> getEventContacts(int eventid){
         ArrayList<ContactItem> contacts = new ArrayList<>();
         db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_CAPTAIN +" , "+KEY_EVENTS_CONTACT + " , " + KEY_EVENTS_GENDER + " FROM "+ EVENTS_TABLE+" ORDER BY "+ KEY_EVENTS_UPDATED +" DESC LIMIT 1", null);
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_CAPTAIN +" , "+KEY_EVENTS_CONTACT + " , " + KEY_EVENTS_GENDER + " FROM "+ EVENTS_TABLE+ " WHERE " + KEY_EVENTS_ID + " = '" + eventid + "'", null);
         if (cursor.moveToFirst()){
             do {
                 contacts.add(new ContactItem(cursor.getString(0),cursor.getString(1),cursor.getInt(2)));
@@ -383,6 +396,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+        Log.e("get Events function",contacts.size()+"");
         return contacts;
     }
 
@@ -401,13 +415,45 @@ public class DBHelper extends SQLiteOpenHelper {
         return eventids;
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EVENTS_ID_TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EVENTS_TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SCHEDULE_TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MEDAL_TABLE);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FEED_TABLE);
-        onCreate(sqLiteDatabase);
+    public ArrayList<MedalSet> getMedalTally(){
+        ArrayList<MedalSet> medalSets = new ArrayList<>();
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+MEDAL_TABLE, null);
+        if (cursor.moveToFirst()){
+            do{
+                medalSets.add(new MedalSet(cursor.getString(1),cursor.getInt(2),cursor.getInt(3),cursor.getInt(4)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return medalSets;
+    }
+
+    public ArrayList<FeedItem> getAllFeedData(){
+        ArrayList<FeedItem> feedItems = new ArrayList<>();
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ FEED_TABLE,null);
+        if (cursor.moveToFirst()){
+            do {
+                feedItems.add(new FeedItem(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getLong(4)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return feedItems;
+    }
+
+    public ArrayList<PrizeItem> getEventPrizes(int eventid){
+        ArrayList<PrizeItem> prizeItems = new ArrayList<>();
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_PRIZE + " , " + KEY_EVENTS_GENDER + " FROM " + EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID + " = '"+eventid+"'",null);
+        if (cursor.moveToFirst()){
+            do {
+                prizeItems.add(new PrizeItem(cursor.getInt(1),cursor.getInt(0)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return prizeItems;
     }
 }

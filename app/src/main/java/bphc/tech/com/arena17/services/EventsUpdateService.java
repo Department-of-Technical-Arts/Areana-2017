@@ -29,7 +29,7 @@ public class EventsUpdateService extends IntentService {
     public static final String TAG = "EVENTS UPDATE SERVICE";
 
     public EventsUpdateService() {
-        super("EvnetsUpdateService");
+        super("EventsUpdateService");
     }
 
     @Override

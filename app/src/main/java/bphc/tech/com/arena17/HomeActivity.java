@@ -64,16 +64,17 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 3:
                         //favourites
+                        startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",1));
                         break;
                     case 4:
                         //app credits
+                        startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",2));
                         break;
                     default:
                         //lite
                         break;
                 }
-                Toast.makeText(HomeActivity.this, pos+"",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, pos+"", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void itemCenterClick(View view)

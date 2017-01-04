@@ -40,6 +40,16 @@ public class EventSelectingActivity extends AppCompatActivity {
 
         adapter = new SelectEventAdapter(this,items);
         event_select.setAdapter(adapter);
+
+        /*DBHelper helper = new DBHelper(this);
+        ArrayList<ScheduleSet> scheduleSets = helper.getScheduleData(19);
+        for (int i=0;i<scheduleSets.size();i++){
+            Log.e("schedule " , scheduleSets.get(i).getDescription()+"");
+            Log.e("schedule " , scheduleSets.get(i).getSportName()+"");
+            Log.e("schedule " , scheduleSets.get(i).getGender()+"");
+            Log.e("schedule " , scheduleSets.get(i).getRound()+"");
+            Log.e("schedule " , scheduleSets.get(i).getVenue()+"");
+        }*/
     }
 
     public ArrayList<EventItem> getAllItemList(){

@@ -36,21 +36,21 @@
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@android:drawable/ic_media_pause"
+                    app:srcCompat="@drawable/ic_medal_gold"
                     android:id="@+id/imageView2" />
 
                 <ImageView
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@android:drawable/ic_media_next"
+                    app:srcCompat="@drawable/ic_medal_silver"
                     android:id="@+id/imageView3"/>
 
                 <ImageView
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@android:drawable/ic_media_play"
+                    app:srcCompat="@drawable/ic_medal_bronze"
                     android:id="@+id/imageView" />
             </LinearLayout>
 
@@ -65,6 +65,7 @@
             android:layout_height="2dp" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/medal_recycler"
             android:layout_marginTop="8dp"
             android:layout_below="@+id/medal_header_separator"
             android:layout_width="match_parent"

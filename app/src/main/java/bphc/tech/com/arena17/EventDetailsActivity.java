@@ -1,5 +1,6 @@
 package bphc.tech.com.arena17;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import bphc.tech.com.arena17.app.Constants;
@@ -51,13 +54,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         // Setup Tab Layout
-//        tabLayout.addTab(tabLayout.newTab().setText("Details"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        Picasso.with(this)
-                .load("https://www.simplifiedcoding.net/wp-content/uploads/2015/10/advertise.png")
-                .into(eventImage);
 
         //MyAdapter
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -69,6 +67,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.events_toolbar);
         setSupportActionBar(toolbar);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.events_collapsingToolbar);
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         //Title is set using fillDetails method!
 
         // ActionBar back button:
@@ -90,11 +90,11 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Error");
         } else {
             collapsingToolbar.setTitle(event.getName());
-//            Picasso.with(this)
-//                    .load("YOUR IMAGE URL HERE")
-//                    //.placeholder(DRAWABLE RESOURCE)   // optional
-//                    //.error(DRAWABLE RESOURCE)      // optional
-//                    .into(eventImage);
+            Picasso.with(this)
+                    .load(event.getImageUrl())
+                    .placeholder(R.drawable.ic_default_event_image)   // optional
+                    .error(R.drawable.default_event_image)      // optional
+                    .into(eventImage);
         }
     }
 
@@ -114,6 +114,21 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Error");
         }
     }
+    private void makeCollapsingToolbarLayoutLooksGood(CollapsingToolbarLayout collapsingToolbarLayout) {
+        try {
+            final Field field = collapsingToolbarLayout.getClass().getDeclaredField("mCollapsingTextHelper");
+            field.setAccessible(true);
+
+            final Object object = field.get(collapsingToolbarLayout);
+            final Field tpf = object.getClass().getDeclaredField("mTextPaint");
+            tpf.setAccessible(true);
+
+            ((TextPaint) tpf.get(object)).setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Bold.ttf"));
+            ((TextPaint) tpf.get(object)).setColor(getResources().getColor(R.color.white));
+        } catch (Exception ignored) {
+        }
+    }
+
 
 
     @Override

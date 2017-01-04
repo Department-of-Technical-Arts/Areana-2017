@@ -3,15 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_margin="4dp"
-        app:cardCornerRadius="@dimen/cardview_default_radius"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
         app:cardElevation="@dimen/cardview_default_elevation">
 
         <LinearLayout
@@ -19,84 +18,108 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/schedule_vertical_text_view"
+                android:layout_width="30dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                app:cardBackgroundColor="@color/tab_background_unselected"
-                app:cardCornerRadius="@dimen/cardview_default_radius">
+                android:gravity="center"
+                android:textSize="16sp"
+                android:background="@color/schedule_red_vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:padding="4dp"
+                    android:id="@+id/schedule_horizontal_color_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/schedule_red_horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/schedule_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:text="24th Jan"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/schedule_round"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:gravity="end"
+                            android:text="Group stages"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@color/schedule_card_background">
 
-                    <TextView
-                        android:id="@+id/schedule_day"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="Jan"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/schedule_description"
+                            android:layout_width="0dp"
+                            android:layout_weight="5"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:gravity="start"
+                            android:text="Random description."
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/schedule_time"
+                            android:layout_width="0dp"
+                            android:textSize="20sp"
+                            android:text="12:00 PM"
+                            android:textColor="#000"
+                            android:gravity="center"
+                            android:layout_weight="2"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/schedule_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:text="26"
-                        android:textColor="@color/white"
-                        android:textSize="32sp" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:orientation="vertical"
-                android:paddingLeft="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="6"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/schedule_description"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="5"
-                        android:gravity="center_vertical"
-                        android:text="This is some random description"
-                        android:textSize="20sp" />
-
-                    <TextView
+                    <!--<TextView
                         android:id="@+id/schedule_time"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
-                        android:layout_weight="2"
-                        android:gravity="center_horizontal"
-                        android:text="12:00 pm"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="start"
+                        android:text="12:00 PM"
+                        android:textColor="#000"
+                        android:textSize="20sp" />-->
 
-                <TextView
-                    android:id="@+id/schedule_sub_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4.5"
-                    android:text="This is some random sub-description" />
+                </LinearLayout>
 
             </LinearLayout>
+
+
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

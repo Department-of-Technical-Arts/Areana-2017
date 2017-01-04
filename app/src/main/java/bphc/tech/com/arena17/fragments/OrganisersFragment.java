@@ -50,16 +50,20 @@ public class OrganisersFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     private void feedData() {
-        Contacts temp1 = new Contacts("sampath balineni", "general secretary", "+91999999999", R.drawable.claire,"");
-        Contacts temp2 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp3 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp4 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp5 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp6 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp7 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp8 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp9 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp10 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
+
+        Contacts temp1 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"kedarnath.keshav@gmail.com");
+        Contacts temp2 = new Contacts("Sai Sampath Balineni", "General Secretary", "+917997030002", R.drawable.claire,"balineniananthasaisampath@gmail.com");
+        Contacts temp3 = new Contacts("Dhairya Patel", "Sports Sec", "+917997030005", R.drawable.claire,"dhairyapatel01@yahoo.in");
+        Contacts temp4 = new Contacts("Juhi Sharma", "Sports Sec", "+917997030006", R.drawable.claire,"sharmajuhi14@gmail.com");
+        Contacts temp5 = new Contacts("Ravi Kumanduri", "DoSM", "+918074176508", R.drawable.claire,"ravikumanduri24oct@gmail.com");
+        Contacts temp6 = new Contacts("Hemanth Byrisetti", "DoTA", "+919542979565", R.drawable.claire,"byrisettihemu@gmail.com");
+        Contacts temp7 = new Contacts("Vuchint Sutapalli", "Arts nd Deco", "+918466950960", R.drawable.claire,"ggani4997@gmail.com");
+        Contacts temp8 = new Contacts("Kapil Bishnoi", "DePP", "+919700829329", R.drawable.claire,"kapil209e@hotmail.com");
+        Contacts temp9 = new Contacts("Ramasami", "DoVE", "+919553336944", R.drawable.claire,"RamasamiXD@Gmail.com");
+        Contacts temp10 = new Contacts("Divyansh Mahajan", "DoPy", "+918184926405", R.drawable.claire,"divyanshmahajan2708@gmail.com");
+        Contacts temp11 = new Contacts("Phani Ginjupalli", "Informalz", "+917989830668", R.drawable.claire,"gphani567@gmail.com");
+        Contacts temp12 = new Contacts("Prateek Jain", "LSD", "+919948197425", R.drawable.claire,"11prateek55@gmail.com");
+        Contacts temp13 = new Contacts("Prithvi Raj", "Firewallz", "+919010526899", R.drawable.claire,"prudhviraj@gmail.com");
         data.add(temp1);
         data.add(temp2);
         data.add(temp3);
@@ -70,7 +74,9 @@ public class OrganisersFragment extends Fragment implements AdapterView.OnItemCl
         data.add(temp8);
         data.add(temp9);
         data.add(temp10);
-        OrganisersAdapter.notifyItemRangeInserted(0, data.size() - 1);
+        data.add(temp11);
+        data.add(temp12);
+        data.add(temp13);OrganisersAdapter.notifyItemRangeInserted(0, data.size() - 1);
     }
 
     @Override

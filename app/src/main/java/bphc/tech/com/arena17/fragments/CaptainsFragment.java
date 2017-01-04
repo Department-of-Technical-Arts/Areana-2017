@@ -49,16 +49,28 @@ public class CaptainsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void feedData() {
-        Contacts temp1 = new Contacts("yyooooooo", "general secretary", "+91999999999", R.drawable.claire,"");
-        Contacts temp2 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp3 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp4 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp5 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp6 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp7 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp8 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp9 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
-        Contacts temp10 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"");
+        Contacts temp1 = new Contacts("Umamaheshwar Nuthulapati","Cricket","9652496568", R.drawable.claire,"umamaheshwarrocks@gmail.com");
+        Contacts temp2 = new Contacts("Karthik Ramanathan",	"Football","9542981889", R.drawable.claire,"karthik227.kr@gmail.com");
+        Contacts temp3 = new Contacts("Muskan Agrawal", "Volley ball (G)", "8499855297", R.drawable.claire,"muskanag.2013@gmail.com");
+        Contacts temp4 = new Contacts("Achyuth Reddy", "Volley ball (B)", "7660853350", R.drawable.claire,"achyuth.ravula@gmail.com");
+        Contacts temp5 = new Contacts("Karthik", "Basketball (B)", "9985117233", R.drawable.claire,"karthikbballm@gmail.com");
+        Contacts temp6 = new Contacts("Richa Mittal", "Basketball (G)", "9573583388", R.drawable.claire,"richadagr8@gmail.com");
+        Contacts temp7 = new Contacts("Sushmitha Belede", "Badminton (G)", "8184999840", R.drawable.claire,"susmitha1157@gmail.com");
+        Contacts temp8 = new Contacts("Aditya Singh", "Badminton (B)", "8501869602", R.drawable.claire,"aditya0000001@gmail.com");
+        Contacts temp9 = new Contacts("A Rajasekhar", "Kabaddi", "9542968482", R.drawable.claire,"rajashekharailuri@gmail.com");
+        Contacts temp10 = new Contacts("Hanoosha Reddy", "Throwball ", "9705792625 ", R.drawable.claire,"NAGIREDDYHANOOSHA@YAHOO.IN");
+        Contacts temp11 = new Contacts("Anuroop G", "Chess", "9603490148", R.drawable.claire,"");
+        Contacts temp12 = new Contacts("Anshul Mathur", "Tennis", "9553320852", R.drawable.claire,"ace.anshul@gmail.com");
+        Contacts temp13 = new Contacts("Manas Chandola", "Squash", "9912318132", R.drawable.claire,"chandolamanas1995@gmail.com");
+        Contacts temp14 = new Contacts("Aastha Singh", "Table Tennis (G)", "9133235010", R.drawable.claire,"aasthasingh999@gmail.com");
+        Contacts temp15 = new Contacts("Sarath T", "Table Tennis (B)", "7729920853", R.drawable.claire,"sarathisalwaysbusy@gmail.com");
+        Contacts temp16 = new Contacts("Anvesh", "Carroms", "8099599556", R.drawable.claire,"alugupallyanveshreddy@gmail.com");
+        Contacts temp17 = new Contacts("Hem Vats", "Hockey", "9912380179", R.drawable.claire,"96hemvats@gmail.com");
+        Contacts temp18 = new Contacts("Abhilash K", "Billiards/Pool", "9603411910", R.drawable.claire,"abhilashf93@gmail.com");
+        Contacts temp19 = new Contacts("Shrinil Thakkar", "Athletics", "9912259873", R.drawable.claire,"shrinil.thakkar@gmail.com");
+        Contacts temp20 = new Contacts("Harsh Mundra", "Body Building ", "7658965045", R.drawable.claire,"harshmundra@hotmail.com");
+        Contacts temp21 = new Contacts("Prabhakar Chowdary", "Power lifting", "8501011169", R.drawable.claire,"");
+        Contacts temp22 = new Contacts("Yashwardhan Singh", "Duathlon", "9030024944", R.drawable.claire,"yashwardhan95@gmail.com");
         data1.add(temp1);
         data1.add(temp2);
         data1.add(temp3);
@@ -69,6 +81,18 @@ public class CaptainsFragment extends Fragment implements AdapterView.OnItemClic
         data1.add(temp8);
         data1.add(temp9);
         data1.add(temp10);
+        data1.add(temp11);
+        data1.add(temp12);
+        data1.add(temp13);
+        data1.add(temp14);
+        data1.add(temp15);
+        data1.add(temp16);
+        data1.add(temp17);
+        data1.add(temp18);
+        data1.add(temp19);
+        data1.add(temp20);
+        data1.add(temp21);
+        data1.add(temp22);
         OrganisersAdapter.notifyItemRangeInserted(0, data1.size() - 1);
     }
 

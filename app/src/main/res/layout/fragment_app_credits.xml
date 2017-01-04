@@ -1,0 +1,336 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="bphc.tech.com.arena17.fragments.AppCreditsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Developers" />
+            <TextView
+                android:background="@color/cardview_dark_background"
+                android:layout_width="match_parent"
+                android:layout_height="2dp" />
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/contact_card"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                android:padding="30dp">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="102dp"
+                            android:layout_height="102dp"
+                            android:src="@drawable/claire"
+                            android:id="@+id/contact_image"
+                            android:scaleType="centerCrop"
+                            android:padding="8dp"
+                            android:paddingTop="20dp"/>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:text="Tejeshwar Reddy"
+                                android:id="@+id/contact_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                android:padding="30dp">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="102dp"
+                            android:layout_height="102dp"
+                            android:src="@drawable/claire"
+                            android:scaleType="centerCrop"
+                            android:padding="8dp"
+                            android:paddingTop="20dp"/>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:text="Sarath TDSK"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                android:padding="30dp">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="102dp"
+                            android:layout_height="102dp"
+                            android:src="@drawable/claire"
+                            android:scaleType="centerCrop"
+                            android:padding="8dp"
+                            android:paddingTop="20dp"/>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:text="Sravani Jagini"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                android:padding="30dp">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="102dp"
+                            android:layout_height="102dp"
+                            android:src="@drawable/claire"
+                            android:scaleType="centerCrop"
+                            android:padding="8dp"
+                            android:paddingTop="20dp"/>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:text="Vaishnavi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Designers" />
+            <TextView
+                android:background="@color/cardview_dark_background"
+                android:layout_width="match_parent"
+                android:layout_height="2dp" />
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                android:padding="30dp">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="102dp"
+                            android:layout_height="102dp"
+                            android:src="@drawable/claire"
+                            android:scaleType="centerCrop"
+                            android:padding="8dp"
+                            android:paddingTop="20dp"/>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:text="Adarsh"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                android:padding="30dp">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="102dp"
+                            android:layout_height="102dp"
+                            android:src="@drawable/claire"
+                            android:scaleType="centerCrop"
+                            android:padding="8dp"
+                            android:paddingTop="20dp"/>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:text="Tejeshwar Reddy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="22dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

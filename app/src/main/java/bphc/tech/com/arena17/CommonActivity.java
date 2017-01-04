@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import bphc.tech.com.arena17.fragments.AppCreditsFragment;
 import bphc.tech.com.arena17.fragments.FeedFragment;
 import bphc.tech.com.arena17.fragments.MedalTallyFragment;
 
@@ -32,6 +33,12 @@ public class CommonActivity extends AppCompatActivity {
                 ft = getSupportFragmentManager().beginTransaction();
                 ft.add(R.id.common_container,fragment).commit();
                 toolbar.setTitle("News Feed");
+                break;
+            case 3:
+                fragment = new AppCreditsFragment();
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.add(R.id.common_container,fragment).commit();
+                toolbar.setTitle("App Credits");
                 break;
             default:
                 Toast.makeText(CommonActivity.this,"INVALID TOKEN RECEIVED",Toast.LENGTH_SHORT).show();

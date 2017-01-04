@@ -2,6 +2,7 @@ package bphc.tech.com.arena17.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +27,18 @@ public class FeedItemAdapter extends RecyclerView.Adapter<FeedItemAdapter.FeedsV
     Context context;
     DBHelper helper;
 
+    public final String TAG = "FEED ITEM ADAPTER";
     public FeedItemAdapter(Context context) {
         this.context = context;
         feedItems = new ArrayList<>();
         helper = new DBHelper(context);
         feedItems = helper.getAllFeedData();
+        for (int i=0;i<feedItems.size();i++){
+            Log.e(TAG,feedItems.get(i).getFeedid());
+            Log.e(TAG,feedItems.get(i).getMessage());
+            Log.e(TAG,feedItems.get(i).getTitle());
+            Log.e(TAG,feedItems.get(i).getTime()+"");
+        }
     }
 
     @Override

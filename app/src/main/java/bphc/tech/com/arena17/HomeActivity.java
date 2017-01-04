@@ -3,6 +3,7 @@ package bphc.tech.com.arena17;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -42,6 +43,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         startService(new Intent(this, EventsUpdateService.class));
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle!=null) {
+            Log.e(TAG, bundle.toString());
+        }
         mCircleMenuLayout = (CircularMenuLayout) findViewById(R.id.id_menulayout);
         mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
 
@@ -61,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 2:
                         //sponsers
+                        startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",2));
                         break;
                     case 3:
                         //favourites
@@ -68,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 4:
                         //app credits
-                        startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",2));
+                        startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",3));
                         break;
                     default:
                         //lite

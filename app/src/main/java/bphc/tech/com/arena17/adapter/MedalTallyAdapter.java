@@ -27,6 +27,7 @@ public class MedalTallyAdapter extends RecyclerView.Adapter<MedalTallyAdapter.Ta
         medalSets = new ArrayList<>();
         DBHelper helper = new DBHelper(context);
         medalSets = helper.getMedalTally();
+
     }
 
     @Override
@@ -37,9 +38,9 @@ public class MedalTallyAdapter extends RecyclerView.Adapter<MedalTallyAdapter.Ta
     @Override
     public void onBindViewHolder(TallyViewHolder holder, int position) {
         holder.team.setText(medalSets.get(position).getCollege());
-        holder.gold.setText(Integer.toString(medalSets.get(position).getGold()));
-        holder.gold.setText(Integer.toString(medalSets.get(position).getSilver()));
-        holder.gold.setText(Integer.toString(medalSets.get(position).getBronze()));
+        holder.gold.setText(medalSets.get(position).getGold()+"");
+        holder.silver.setText(medalSets.get(position).getSilver()+"");
+        holder.bronze.setText(medalSets.get(position).getBronze()+"");
     }
 
     @Override

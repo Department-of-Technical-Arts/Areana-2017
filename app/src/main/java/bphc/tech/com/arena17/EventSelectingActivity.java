@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
 import bphc.tech.com.arena17.adapter.SelectEventAdapter;
+import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.EventItem;
+import bphc.tech.com.arena17.sets.PrizeItem;
 
 public class EventSelectingActivity extends AppCompatActivity {
 
@@ -41,15 +44,12 @@ public class EventSelectingActivity extends AppCompatActivity {
         adapter = new SelectEventAdapter(this,items);
         event_select.setAdapter(adapter);
 
-        /*DBHelper helper = new DBHelper(this);
-        ArrayList<ScheduleSet> scheduleSets = helper.getScheduleData(19);
-        for (int i=0;i<scheduleSets.size();i++){
-            Log.e("schedule " , scheduleSets.get(i).getDescription()+"");
-            Log.e("schedule " , scheduleSets.get(i).getSportName()+"");
-            Log.e("schedule " , scheduleSets.get(i).getGender()+"");
-            Log.e("schedule " , scheduleSets.get(i).getRound()+"");
-            Log.e("schedule " , scheduleSets.get(i).getVenue()+"");
-        }*/
+        DBHelper helper = new DBHelper(this);
+        ArrayList<PrizeItem> prizeItems = helper.getEventPrizes(4);
+        for (int i=0;i<prizeItems.size();i++){
+            Log.e("prize " , prizeItems.get(i).getGender()+"");
+            Log.e("prize " , prizeItems.get(i).getPrize()+"");
+        }
     }
 
     public ArrayList<EventItem> getAllItemList(){

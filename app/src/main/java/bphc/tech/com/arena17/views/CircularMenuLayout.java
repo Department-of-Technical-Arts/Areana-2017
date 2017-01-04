@@ -36,7 +36,7 @@ public class CircularMenuLayout extends ViewGroup
     /**
      * 当每秒移动角度达到该值时，认为是快速移动
      */
-    private static final int FLINGABLE_VALUE = 300;
+    private static final int FLINGABLE_VALUE = 30000;
 
     /**
      * 如果移动角度达到该值，则屏蔽点击
@@ -350,7 +350,7 @@ public class CircularMenuLayout extends ViewGroup
             case MotionEvent.ACTION_UP:
 
                 // 计算，每秒移动的角度
-                float anglePerSecond = mTmpAngle * 1000
+                float anglePerSecond = mTmpAngle * 10
                         / (System.currentTimeMillis() - mDownTime);
 
                 // Log.e("TAG", anglePrMillionSecond + " , mTmpAngel = " +

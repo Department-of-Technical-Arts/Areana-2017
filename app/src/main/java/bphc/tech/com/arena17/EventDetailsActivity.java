@@ -1,5 +1,6 @@
 package bphc.tech.com.arena17;
 
+import android.graphics.Typeface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,12 +24,14 @@ import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.fragments.EventDetailsFragment;
 import bphc.tech.com.arena17.fragments.EventScheduleFragment;
+import bphc.tech.com.arena17.fragments.NoScheduleFragment;
 import bphc.tech.com.arena17.sets.EventsSet;
 
 /**
@@ -56,13 +60,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         // Setup Tab Layout
-//        tabLayout.addTab(tabLayout.newTab().setText("Details"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        Picasso.with(this)
-                .load("https://www.simplifiedcoding.net/wp-content/uploads/2015/10/advertise.png")
-                .into(eventImage);
 
         //MyAdapter
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -74,6 +73,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.events_toolbar);
         setSupportActionBar(toolbar);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.events_collapsingToolbar);
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         //Title is set using fillDetails method!
 
         // ActionBar back button:
@@ -108,11 +109,11 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Error");
         } else {
             collapsingToolbar.setTitle(event.getName());
-//            Picasso.with(this)
-//                    .load("YOUR IMAGE URL HERE")
-//                    //.placeholder(DRAWABLE RESOURCE)   // optional
-//                    //.error(DRAWABLE RESOURCE)      // optional
-//                    .into(eventImage);
+            Picasso.with(this)
+                    .load(event.getImageUrl())
+                    .placeholder(R.drawable.ic_default_event_image)   // optional
+                    .error(R.drawable.ic_default_event_image)      // optional
+                    .into(eventImage);
         }
     }
 
@@ -132,6 +133,21 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Error");
         }
     }
+    private void makeCollapsingToolbarLayoutLooksGood(CollapsingToolbarLayout collapsingToolbarLayout) {
+        try {
+            final Field field = collapsingToolbarLayout.getClass().getDeclaredField("mCollapsingTextHelper");
+            field.setAccessible(true);
+
+            final Object object = field.get(collapsingToolbarLayout);
+            final Field tpf = object.getClass().getDeclaredField("mTextPaint");
+            tpf.setAccessible(true);
+
+            ((TextPaint) tpf.get(object)).setTypeface(Typeface.createFromAsset(getAssets(), "Roboto-Bold.ttf"));
+            ((TextPaint) tpf.get(object)).setColor(getResources().getColor(R.color.white));
+        } catch (Exception ignored) {
+        }
+    }
+
 
 
     @Override
@@ -178,7 +194,20 @@ public class EventDetailsActivity extends AppCompatActivity {
             //return PlaceholderFragment.newInstance(position + 1);
             switch (position){
                 case 0: return new EventDetailsFragment();
-                case 1: return new EventScheduleFragment();
+                case 1: {
+                    try{
+                        DBHelper helper1 = new DBHelper(EventDetailsActivity.this);
+                        int eventID1 = getIntent().getIntExtra(Constants.Arg_Event_ID, -1);
+                        if(helper1.getScheduleData(eventID1).size()!=0){
+                            return new EventScheduleFragment();
+                        }
+                        else {return new NoScheduleFragment();}
+                    }catch (Exception e){
+                        return new NoScheduleFragment();
+                    }
+
+
+                }
             }
             return null;
         }

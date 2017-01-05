@@ -7,4 +7,16 @@
     <color name="tab_background_unselected">#29ABE2</color>
     <color name="translusent">#BF000000</color>
     <color name="white">#fff</color>
+    <color name="hyperlink">#1F1768</color>
+    <color name="schedule_red_vertical">#C1232C</color>
+    <color name="schedule_red_horizontal">#DB494A</color>
+    <color name="schedule_green_vertical">#029043</color>
+    <color name="schedule_green_horizontal">#39B349</color>
+    <color name="schedule_card_background">#E6E6E6</color>
+    <color name="schedule_purple_vertical">#580168</color>
+    <color name="schedule_purple_horizontal">#67027A</color>
+    <color name="schedule_blue_vertical">#00338B</color>
+    <color name="schedule_blue_horizontal">#00478B</color>
+
+
 </resources>

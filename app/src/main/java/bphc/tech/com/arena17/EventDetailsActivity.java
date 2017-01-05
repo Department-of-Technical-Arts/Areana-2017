@@ -1,6 +1,9 @@
 package bphc.tech.com.arena17;
 
 import android.graphics.Typeface;
+import android.content.Intent;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -14,9 +17,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextPaint;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.flaviofaria.kenburnsview.KenBurnsView;
+import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Field;
@@ -84,8 +91,29 @@ public class EventDetailsActivity extends AppCompatActivity {
         // needed for the nestedScrollView to be displayed.
         nestedScrollView = (NestedScrollView) findViewById(R.id.NestedScrollView);
         nestedScrollView.setFillViewport(true);
-    }
 
+//from here
+       ImageButton imageButton1 = (ImageButton)findViewById(R.id.event_location);
+        imageButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng l2 = new EventDetailsActivity().eventLocation();
+                startActivity(new Intent(Intent.ACTION_VIEW,
+
+                        Uri.parse("http://maps.google.com/maps?daddr="+l2.latitude+","+l2.longitude)));
+
+
+            }
+        });
+    }
+    public LatLng eventLocation()
+    {
+
+        DBHelper dbHelper1 = new DBHelper(getApplicationContext());
+        LatLng l1 =  dbHelper1.getLocation(eventID);
+        return l1;
+    }
+//till here
     private void fillData(EventsSet event) {
         if (event.getName().isEmpty()) {
             collapsingToolbar.setTitle("Error");

@@ -10,7 +10,7 @@ public class Constants {
     public static final String EVENTS_TAG = "getEvents";
     public static final String Arg_Event_ID = "eventID";
     public static final String RESULTS_TAG = "getResults";
-
+    public static final String TOKEN_TAG = "addToken";
     public static String[] names = {"Main Gate",
             "Bus Stop",
             "Cafetaria",

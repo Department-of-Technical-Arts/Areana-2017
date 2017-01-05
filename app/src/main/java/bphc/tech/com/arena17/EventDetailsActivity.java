@@ -1,23 +1,21 @@
 package bphc.tech.com.arena17;
 
 import android.content.Intent;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.flaviofaria.kenburnsview.KenBurnsView;
@@ -91,27 +89,19 @@ public class EventDetailsActivity extends AppCompatActivity {
         nestedScrollView = (NestedScrollView) findViewById(R.id.NestedScrollView);
         nestedScrollView.setFillViewport(true);
 
-//from here
+        //from here
        ImageButton imageButton1 = (ImageButton)findViewById(R.id.event_location);
+        helper = new DBHelper(this);
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LatLng l2 = new EventDetailsActivity().eventLocation();
+                LatLng latLng = helper.getLocation(getIntent().getIntExtra(Constants.Arg_Event_ID, -1));
                 startActivity(new Intent(Intent.ACTION_VIEW,
-
-                        Uri.parse("http://maps.google.com/maps?daddr="+l2.latitude+","+l2.longitude)));
-
-
+                        Uri.parse("http://maps.google.com/maps?daddr="+latLng.latitude+","+latLng.longitude)));
             }
         });
     }
-    public LatLng eventLocation()
-    {
 
-        DBHelper dbHelper1 = new DBHelper(getApplicationContext());
-        LatLng l1 =  dbHelper1.getLocation(eventID);
-        return l1;
-    }
 //till here
     private void fillData(EventsSet event) {
         if (event.getName().isEmpty()) {

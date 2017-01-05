@@ -30,7 +30,9 @@
         <activity
             android:name=".EventDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ContactsActivity" />
+        <activity
+            android:name=".ContactsActivity"
+            android:label="Contact Us" />
 
         <service android:name=".services.MyFirebaseMessagingService">
             <intent-filter>
@@ -62,7 +64,10 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CommonActivity"
+        <activity
+            android:name=".CommonActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ShowAdActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

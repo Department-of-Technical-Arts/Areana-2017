@@ -3,6 +3,7 @@ package bphc.tech.com.arena17.api;
 import bphc.tech.com.arena17.sets.EventsData;
 import bphc.tech.com.arena17.sets.MedalData;
 import bphc.tech.com.arena17.sets.ScheduleData;
+import bphc.tech.com.arena17.sets.TokenItem;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -21,4 +22,8 @@ public interface ApiInterface {
 
     @GET("api/")
     Call<MedalData> getResults(@Query("tag") String tag, @Query("updated_at") int updated_at);
+
+    @GET("api/")
+    Call<TokenItem> addToken(@Query("tag") String tag, @Query("token") String token);
+
 }

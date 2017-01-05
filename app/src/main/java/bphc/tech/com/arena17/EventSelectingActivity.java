@@ -1,19 +1,18 @@
 package bphc.tech.com.arena17;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
 import bphc.tech.com.arena17.adapter.SelectEventAdapter;
-import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.EventItem;
-import bphc.tech.com.arena17.sets.PrizeItem;
 
 public class EventSelectingActivity extends AppCompatActivity {
 
@@ -27,13 +26,13 @@ public class EventSelectingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_selecting);
 
-        /*MobileAds.initialize(getApplicationContext(), getResources().getString(R.string.banner_ads_id));
-        mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest
-                .Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mAdView.loadAd(adRequest);*/
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i=new Intent(EventSelectingActivity.this,ShowAdActivity.class);
+                startActivity(i);
+            }
+        }, 5000);
 
         ArrayList<EventItem> items = getAllItemList();
         event_select = (RecyclerView) findViewById(R.id.events_select_recycler);
@@ -44,12 +43,12 @@ public class EventSelectingActivity extends AppCompatActivity {
         adapter = new SelectEventAdapter(this,items);
         event_select.setAdapter(adapter);
 
-        DBHelper helper = new DBHelper(this);
+        /*DBHelper helper = new DBHelper(this);
         ArrayList<PrizeItem> prizeItems = helper.getEventPrizes(4);
         for (int i=0;i<prizeItems.size();i++){
             Log.e("prize " , prizeItems.get(i).getGender()+"");
             Log.e("prize " , prizeItems.get(i).getPrize()+"");
-        }
+        }*/
     }
 
     public ArrayList<EventItem> getAllItemList(){

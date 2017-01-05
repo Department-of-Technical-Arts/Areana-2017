@@ -30,9 +30,11 @@
         <activity
             android:name=".EventDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ContactsActivity"
-            android:label="Contact Us" />
+            android:label="Contact Us"
+            android:theme="@style/AppTheme"/>
 
         <service android:name=".services.MyFirebaseMessagingService">
             <intent-filter>
@@ -50,7 +52,9 @@
 
         <activity
             android:name=".EventSelectingActivity"
-            android:theme="@style/Theme.AppCompat.Translucent" />
+            android:label="Select a Sport"
+            android:theme="@style/Theme.AppCompat" />
+
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -67,6 +71,7 @@
         <activity
             android:name=".CommonActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".ShowAdActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>

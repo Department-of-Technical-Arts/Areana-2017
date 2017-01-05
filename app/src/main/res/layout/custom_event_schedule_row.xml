@@ -39,6 +39,7 @@
                     android:background="@color/schedule_red_horizontal">
 
                     <RelativeLayout
+                        android:layout_marginLeft="8dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -56,6 +57,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:layout_marginRight="8dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -80,6 +82,7 @@
                     android:background="@color/schedule_card_background">
 
                     <LinearLayout
+                        android:layout_marginRight="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -115,11 +118,7 @@
                         android:textSize="20sp" />-->
 
                 </LinearLayout>
-
             </LinearLayout>
-
-
-
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

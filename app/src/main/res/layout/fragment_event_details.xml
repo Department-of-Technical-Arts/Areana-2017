@@ -58,9 +58,7 @@
                     android:elevation="@dimen/cardview_default_elevation"
                     app:cardCornerRadius="@dimen/cardview_default_radius"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    app:cardBackgroundColor="@color/colorPrimary"
-                    >
+                    android:layout_marginStart="10dp">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -70,8 +68,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
+                            android:textStyle="bold"
                             android:text="Download PDF"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/tab_background_selected"
                             android:textSize="16sp"
                             />
                         <ImageView
@@ -79,8 +78,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/card_pdf"
-                            android:tint="#ffffff" />
+                            app:srcCompat="@drawable/card_pdf"
+                            android:tint="@color/tab_background_selected" />
                     </LinearLayout>
 
 
@@ -151,14 +150,16 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_call_black"
+                            app:srcCompat="@drawable/ic_call_black"
                             />
                         <TextView
                             android:id="@+id/contact_no_1"
                             android:layout_width="0dp"
                             android:layout_weight="5"
                             android:layout_height="wrap_content"
+                            android:textColorLink="@color/tab_background_selected"
                             android:autoLink="all"
+                            android:textStyle="bold"
                             android:text="+917729920853"
                             android:layout_gravity="center_vertical"
                             android:textSize="18sp"
@@ -193,7 +194,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_call_black"
+                            app:srcCompat="@drawable/ic_call_black"
                             />
                         <TextView
                             android:id="@+id/contact_no_2"

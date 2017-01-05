@@ -21,18 +21,21 @@ public class EventSelectingActivity extends AppCompatActivity {
     private SelectEventAdapter adapter;
 
     AdView mAdView;
+    Runnable runnable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_selecting);
 
-        new Handler().postDelayed(new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
                 Intent i=new Intent(EventSelectingActivity.this,ShowAdActivity.class);
                 startActivity(i);
             }
-        }, 5000);
+        };
+
+        new Handler().postDelayed(runnable, 3000);
 
         ArrayList<EventItem> items = getAllItemList();
         event_select = (RecyclerView) findViewById(R.id.events_select_recycler);
@@ -76,4 +79,9 @@ public class EventSelectingActivity extends AppCompatActivity {
         return items;
     }
 
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+    }
 }

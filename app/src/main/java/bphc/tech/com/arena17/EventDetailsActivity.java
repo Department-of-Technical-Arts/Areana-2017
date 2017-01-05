@@ -1,10 +1,11 @@
 package bphc.tech.com.arena17;
 
-import android.graphics.Typeface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +18,7 @@ import android.text.TextPaint;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.flaviofaria.kenburnsview.KenBurnsView;
@@ -49,6 +50,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     int eventID;
     DBHelper helper;
     KenBurnsView eventImage;
+    static CoordinatorLayout coordinatorLayout;;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +60,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventImage = (KenBurnsView) findViewById(R.id.event_image);
         mViewPager = (ViewPager) findViewById(R.id.container);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.event_details_coordinator);
 
         // Setup Tab Layout
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
 
         //MyAdapter
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -81,6 +83,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
         }
 
         //Obtain the Event.
@@ -91,9 +94,9 @@ public class EventDetailsActivity extends AppCompatActivity {
         nestedScrollView.setFillViewport(true);
 
         //from here
-       ImageButton imageButton1 = (ImageButton)findViewById(R.id.event_location);
+       ImageView imageButton = (ImageView) findViewById(R.id.event_location);
         helper = new DBHelper(this);
-        imageButton1.setOnClickListener(new View.OnClickListener() {
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LatLng latLng = helper.getLocation(getIntent().getIntExtra(Constants.Arg_Event_ID, -1));
@@ -106,7 +109,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 //till here
     private void fillData(EventsSet event) {
         if (event.getName().isEmpty()) {
-            collapsingToolbar.setTitle("Error");
+            collapsingToolbar.setTitle("Arena 17");
         } else {
             collapsingToolbar.setTitle(event.getName());
             Picasso.with(this)
@@ -152,6 +155,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+/*
         getMenuInflater().inflate(R.menu.toolbar_star, menu);
         MenuItem item = menu.findItem(R.id.menu_star);
         if (helper.isFavourite(eventID)==0) {
@@ -160,6 +164,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         } else {
             item.setIcon(R.drawable.ic_star_selected);
         }
+*/
 
         return true;
     }
@@ -168,7 +173,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
-        } else if (item.getItemId() == R.id.menu_star) {
+        } /*else if (item.getItemId() == R.id.menu_star) {
             if ((item.getIcon().getConstantState()).equals(getResources().getDrawable(R.drawable.ic_star_not_selected).getConstantState())) {
                 item.setIcon(R.drawable.ic_star_selected);
                 helper.toggleFavourite(eventID);
@@ -176,7 +181,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 item.setIcon(R.drawable.ic_star_not_selected);
                 helper.toggleFavourite(eventID);
             }
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

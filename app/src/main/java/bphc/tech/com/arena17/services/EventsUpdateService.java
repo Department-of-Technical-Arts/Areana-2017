@@ -76,6 +76,7 @@ public class EventsUpdateService extends IntentService {
             @Override
             public void onFailure(Call<EventsData> call, Throwable t) {
                 Log.e(TAG,"Check your internet connection");
+//                Toast.makeText(EventsUpdateService.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
             }
         });
 

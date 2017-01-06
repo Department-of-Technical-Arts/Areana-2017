@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Map;
 
-import bphc.tech.com.arena17.HomeActivity;
+import bphc.tech.com.arena17.EventDetailsActivity;
 import bphc.tech.com.arena17.R;
 import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
@@ -39,7 +39,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Gson gson = new Gson();
         FeedItem feedItem = gson.fromJson(response,FeedItem.class);
 
-        Intent intent = new Intent(this,HomeActivity.class);
+        Intent intent = new Intent(this,EventDetailsActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(Constants.Arg_Event_ID,feedItem.getEvent_id());
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
@@ -49,7 +49,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationBuilder.setContentText(feedItem.getMessage());
         notificationBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         notificationBuilder.setAutoCancel(false);
-        notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        notificationBuilder.setSmallIcon(R.drawable.ic_noti);
         notificationBuilder.setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

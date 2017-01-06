@@ -6,13 +6,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import bphc.tech.com.arena17.fragments.AppCreditsFragment;
 import bphc.tech.com.arena17.fragments.RegistrationFragment;
 import bphc.tech.com.arena17.fragments.SponsorsFragment;
 
-public class CommonActivity extends AppCompatActivity {
+public class CommonActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     Toolbar toolbar;
     @Override
@@ -70,5 +72,10 @@ public class CommonActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
         overridePendingTransition(R.anim.stay, R.anim.slide_down);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
     }
 }

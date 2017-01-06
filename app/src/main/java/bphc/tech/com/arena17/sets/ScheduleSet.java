@@ -32,7 +32,7 @@ public class ScheduleSet {
     @SerializedName("round")
     @Expose
     private String round;
-
+    private String vs;
     /**
      * No args constructor for use in serialization
      *
@@ -61,7 +61,8 @@ public class ScheduleSet {
                        int gender,
                        String description,
                        String venue,
-                       String round) {
+                       String round,
+                       String vs) {
         this.eventId = eventId;
         this.time = time;
         this.updatedAt = updatedAt;
@@ -71,6 +72,15 @@ public class ScheduleSet {
         this.description = description;
         this.venue = venue;
         this.round = round;
+        this.vs = vs;
+    }
+
+    public String getVs() {
+        return vs;
+    }
+
+    public void setVs(String vs) {
+        this.vs = vs;
     }
 
     public int getEventId() {

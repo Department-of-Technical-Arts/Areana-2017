@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import bphc.tech.com.arena17.app.ArenaApplication;
 import bphc.tech.com.arena17.services.EventsUpdateService;
+import bphc.tech.com.arena17.services.MedalsUpdateService;
+import bphc.tech.com.arena17.services.SponsorsUpdateService;
 import bphc.tech.com.arena17.views.CircularMenuLayout;
 
 public class HomeActivity extends AppCompatActivity {
@@ -49,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         startService(new Intent(this, EventsUpdateService.class));
+        startService(new Intent(this, MedalsUpdateService.class));
+        startService(new Intent(this, SponsorsUpdateService.class));
 
         textView = (TextView) findViewById(R.id.esteregg_view);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -85,11 +89,13 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.makeText(HomeActivity.this, "Our Sponsors", Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(getApplicationContext(),"No Sponsers Self Sponsored",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",2));
+                        startService(new Intent(HomeActivity.this, SponsorsUpdateService.class));
                         break;
                     case 3:
                         //app credits
                         Toast.makeText(HomeActivity.this, "App Credits", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",3));
+                        startService(new Intent(HomeActivity.this, SponsorsUpdateService.class));
                         break;
                     case 4:
                         //register

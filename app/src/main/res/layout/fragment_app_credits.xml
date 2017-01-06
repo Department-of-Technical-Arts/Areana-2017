@@ -19,12 +19,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="22dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="Developers" />
+                android:text="App Developers" />
             <TextView
                 android:background="@color/cardview_dark_background"
                 android:layout_width="match_parent"
                 android:layout_height="2dp" />
             <android.support.v7.widget.CardView
+                android:id="@+id/tejeshwar"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/claire"
+                            android:src="@drawable/default_pic"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
                             android:paddingTop="20dp"/>
@@ -74,6 +75,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/sarath"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,8 +100,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/claire"
-                            
+                            android:src="@drawable/sarath"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
                             android:paddingTop="20dp"/>
@@ -114,7 +115,7 @@
                             <TextView
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/black"
-                                android:text="Tejeshwar Reddy"
+                                android:text="Sarath TDSK"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="18dp" />
@@ -123,6 +124,7 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
+                android:id="@+id/sravani"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,7 +149,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/claire"
+                            android:src="@drawable/sravanij"
                             android:id="@+id/contact_image"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
@@ -163,7 +165,7 @@
                             <TextView
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/black"
-                                android:text="Tejeshwar Reddy"
+                                android:text="Sravani Jagini"
                                 android:id="@+id/contact_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -177,7 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/contact_card"
+                android:id="@+id/vaishnavi"
                 android:layout_margin="2dp"
                 android:orientation="vertical"
                 app:cardCornerRadius="4dp"
@@ -198,7 +200,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/claire"
+                            android:src="@drawable/default_pic"
                             
                             android:scaleType="centerCrop"
                             android:padding="8dp"
@@ -214,7 +216,7 @@
                             <TextView
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/black"
-                                android:text="Tejeshwar Reddy"
+                                android:text="Vaishnavi Reddy"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="18dp" />
@@ -235,6 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp" />
             <android.support.v7.widget.CardView
+                android:id="@+id/adarsh"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -259,7 +262,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/claire"
+                            android:src="@drawable/default_pic"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
                             android:paddingTop="20dp"/>
@@ -274,7 +277,7 @@
                             <TextView
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/black"
-                                android:text="Tejeshwar Reddy"
+                                android:text="Adarsh Salagame"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="18dp" />
@@ -283,6 +286,7 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
+                android:id="@+id/gagan"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -307,7 +311,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/claire"
+                            android:src="@drawable/default_pic"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
                             android:paddingTop="20dp"/>
@@ -322,7 +326,67 @@
                             <TextView
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/black"
-                                android:text="Tejeshwar Reddy"
+                                android:text="Gagan Aditya"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <TextView
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Backend Developer" />
+            <TextView
+                android:background="@color/cardview_dark_background"
+                android:layout_width="match_parent"
+                android:layout_height="2dp" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/ksitij"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="2dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                android:padding="30dp">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/kshitij"
+                            android:scaleType="centerCrop"
+                            android:padding="8dp"
+                            android:paddingTop="20dp"/>
+
+                        <LinearLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:text="Kshitij Grovor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="18dp" />

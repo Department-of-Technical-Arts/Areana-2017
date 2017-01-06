@@ -12,12 +12,8 @@ import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.EventsData;
 import bphc.tech.com.arena17.sets.EventsSet;
-import bphc.tech.com.arena17.sets.MedalData;
-import bphc.tech.com.arena17.sets.MedalSet;
 import bphc.tech.com.arena17.sets.ScheduleData;
 import bphc.tech.com.arena17.sets.ScheduleSet;
-import bphc.tech.com.arena17.sets.SponsorData;
-import bphc.tech.com.arena17.sets.SponsorSet;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,6 +44,7 @@ public class EventsUpdateService extends IntentService {
             @Override
             public void onResponse(Call<EventsData> call, Response<EventsData> response) {
                 DBHelper helper = new DBHelper(getApplicationContext());
+                helper.deleteEventsTable();
                 List<EventsSet> eventsSet = response.body().getData();
                 Log.e(TAG,eventsSet.size()+"");
                 for (int i=0;i<eventsSet.size();i++){
@@ -85,6 +82,7 @@ public class EventsUpdateService extends IntentService {
             @Override
             public void onResponse(Call<ScheduleData> call, Response<ScheduleData> response) {
                 DBHelper helper = new DBHelper(getApplicationContext());
+                helper.deleteScheduleTable();
                 List<ScheduleSet> scheduleSets = response.body().getData();
                 Log.e(TAG,scheduleSets.size()+"");
                 for (int i=0;i<scheduleSets.size();i++){
@@ -98,50 +96,13 @@ public class EventsUpdateService extends IntentService {
                             scheduleSets.get(i).getGender(),
                             scheduleSets.get(i).getDescription(),
                             scheduleSets.get(i).getVenue(),
-                            scheduleSets.get(i).getRound());
+                            scheduleSets.get(i).getRound(),
+                            scheduleSets.get(i).getVs());
 //                    Log.e(TAG,success+"");
                 }
             }
             @Override
             public void onFailure(Call<ScheduleData> call, Throwable t) {
-                Log.e(TAG,"Check your internet connection");
-            }
-        });
-
-        final Call<MedalData> medalDataCall = apiService.getResults(Constants.RESULTS_TAG,0);
-        medalDataCall.enqueue(new Callback<MedalData>() {
-            @Override
-            public void onResponse(Call<MedalData> call, Response<MedalData> response) {
-                DBHelper helper = new DBHelper(getApplicationContext());
-                List<MedalSet> medalSets = response.body().getData();
-                Log.e(TAG,medalSets.size()+"");
-                for (int i = 0 ; i<medalSets.size();i++){
-                    helper.addMedalsRow(medalSets.get(i).getCollege(),medalSets.get(i).getGold(),medalSets.get(i).getSilver(),medalSets.get(i).getBronze());
-//                    Log.e(TAG,success+"");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MedalData> call, Throwable t) {
-                Log.e(TAG,"Check your internet connection");
-            }
-        });
-
-        final Call<SponsorData> sponsorDataCall = apiService.getSponsors(Constants.SPONSORS_TAG,0);
-        sponsorDataCall.enqueue(new Callback<SponsorData>() {
-            @Override
-            public void onResponse(Call<SponsorData> call, Response<SponsorData> response) {
-                DBHelper helper = new DBHelper(getApplicationContext());
-                List<SponsorSet> sponsorSets = response.body().getData();
-                Log.e(TAG,sponsorSets.size()+"");
-                for (int i = 0 ; i<sponsorSets.size();i++){
-                    helper.addSponsorData(sponsorSets.get(i).getTitle(),sponsorSets.get(i).getUrl(),sponsorSets.get(i).getSponsUrl(),sponsorSets.get(i).getUpdatedAt());
-//                    Log.e(TAG,success+"");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SponsorData> call, Throwable t) {
                 Log.e(TAG,"Check your internet connection");
             }
         });

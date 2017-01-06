@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,11 +25,13 @@ import bphc.tech.com.arena17.sets.SponsorSet;
 
 public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.SponsorViewHolder> {
 
+    AdapterView.OnItemClickListener itemClickListener;
     Context context;
     ArrayList<SponsorSet> sponsorSets;
-    public SponsorsAdapter(Context context,ArrayList<SponsorSet> sponsorSets) {
+    public SponsorsAdapter(Context context, ArrayList<SponsorSet> sponsorSets, AdapterView.OnItemClickListener itemClickListener) {
         this.context = context;
         this.sponsorSets = sponsorSets;
+        this.itemClickListener = itemClickListener;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
     public void onBindViewHolder(SponsorViewHolder holder, int position) {
         holder.textView.setText(sponsorSets.get(position).getTitle());
         Picasso.with(context).load(sponsorSets.get(position).getUrl()).into(holder.image);
+
         Animation animation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(300);
@@ -57,7 +61,7 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
     }
 
 
-    public class SponsorViewHolder extends RecyclerView.ViewHolder {
+    public class SponsorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView image;
         TextView textView;
@@ -65,6 +69,12 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
             super(itemView);
             image = (ImageView) itemView.findViewById(R.id.sponsor_card_image);
             textView = (TextView) itemView.findViewById(R.id.sponsor_card_text);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListener.onItemClick(null,view,getAdapterPosition(),view.getId());
         }
     }
 }

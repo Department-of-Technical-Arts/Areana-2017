@@ -32,7 +32,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/claire"
+                android:src="@drawable/default_pic"
                 android:id="@+id/contact_image"
                 android:scaleType="centerCrop"
                 android:padding="8dp"

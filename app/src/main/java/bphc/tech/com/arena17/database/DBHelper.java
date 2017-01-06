@@ -68,6 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private final String KEY_SCHEDULE_DESCRIPTION = "description";
     private final String KEY_SCHEDULE_VENUE = "venue";
     private final String KEY_SCHEDULE_ROUND = "round";
+    private final String KEY_SCHEDULE_VS = "vs";
 
     //COLUMN NAMES FOR MEDAL TALLY TABLE
     private final String KEY_MEDAL_COLLEGE_NAME = "name";
@@ -167,7 +168,8 @@ public class DBHelper extends SQLiteOpenHelper {
                                int gender,
                                String description,
                                String venue,
-                               String round){
+                               String round,
+                               String vs){
         db = this.getWritableDatabase();
         Log.e("add Schedue Row", eventid + "");
         ContentValues cv =new ContentValues();
@@ -180,6 +182,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(KEY_SCHEDULE_DESCRIPTION,description);
         cv.put(KEY_SCHEDULE_VENUE,venue);
         cv.put(KEY_SCHEDULE_ROUND,round);
+        cv.put(KEY_SCHEDULE_VS,vs);
         success = db.insert(SCHEDULE_TABLE, null , cv);
         db.close();
         return success;
@@ -229,7 +232,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         cursor.getInt(6),
                         cursor.getString(7),
                         cursor.getString(8),
-                        cursor.getString(9)
+                        cursor.getString(9),
+                        cursor.getString(10)
                 ));
             }while (cursor.moveToNext());
             cursor.close();
@@ -282,7 +286,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 KEY_SCHEDULE_GENDER + " INTEGER NOT NULL, " +
                 KEY_SCHEDULE_DESCRIPTION + " TEXT, " +
                 KEY_SCHEDULE_VENUE + " TEXT, " +
-                KEY_SCHEDULE_ROUND + " TEXT); ";
+                KEY_SCHEDULE_ROUND + " TEXT, " +
+                KEY_SCHEDULE_VS + " TEXT); ";
 
         final String CREATE_MEDAL_TABLE = "CREATE TABLE IF NOT EXISTS " + MEDAL_TABLE + " (" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -337,16 +342,28 @@ public class DBHelper extends SQLiteOpenHelper {
         return location;
     }
 
-    public long getLastEventUpdatedAt(){
-        long updatedat = 0;
+    public void deleteEventsTable(){
         db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_UPDATED + " FROM "+ EVENTS_TABLE+" ORDER BY "+ KEY_EVENTS_UPDATED +" DESC LIMIT 1", null);
-        if (cursor.moveToFirst()){
-            updatedat = cursor.getLong(0);
-        }
-        cursor.close();
+        db.delete(EVENTS_TABLE,null,null);
         db.close();
-        return updatedat;
+    }
+
+    public void deleteScheduleTable(){
+        db = this.getWritableDatabase();
+        db.delete(SCHEDULE_TABLE,null,null);
+        db.close();
+    }
+
+    public void deleteMedalsTable(){
+        db = this.getWritableDatabase();
+        db.delete(MEDAL_TABLE,null,null);
+        db.close();
+    }
+
+    public void deleteSponsorTable(){
+        db = this.getWritableDatabase();
+        db.delete(SPONSORS_TABLE,null,null);
+        db.close();
     }
 
     public ArrayList<ContactItem> getEventContacts(int eventid){

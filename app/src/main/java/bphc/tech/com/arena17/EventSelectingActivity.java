@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,6 @@ public class EventSelectingActivity extends AppCompatActivity {
     private SelectEventAdapter adapter;
     public static final String TAG = "EventSelectingActivity";
 
-    AdView mAdView;
     Runnable runnable;
     ArenaApplication app;
     @Override

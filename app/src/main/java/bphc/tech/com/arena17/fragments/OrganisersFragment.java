@@ -51,19 +51,19 @@ public class OrganisersFragment extends Fragment implements AdapterView.OnItemCl
 
     private void feedData() {
 
-        Contacts temp1 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.claire,"kedarnath.keshav@gmail.com");
-        Contacts temp2 = new Contacts("Sai Sampath Balineni", "General Secretary", "+917997030002", R.drawable.claire,"balineniananthasaisampath@gmail.com");
-        Contacts temp3 = new Contacts("Dhairya Patel", "Sports Sec", "+917997030005", R.drawable.claire,"dhairyapatel01@yahoo.in");
-        Contacts temp4 = new Contacts("Juhi Sharma", "Sports Sec", "+917997030006", R.drawable.claire,"sharmajuhi14@gmail.com");
-        Contacts temp5 = new Contacts("Ravi Kumanduri", "DoSM", "+918074176508", R.drawable.claire,"ravikumanduri24oct@gmail.com");
-        Contacts temp6 = new Contacts("Hemanth Byrisetti", "DoTA", "+919542979565", R.drawable.claire,"byrisettihemu@gmail.com");
-        Contacts temp7 = new Contacts("Vuchint Sutapalli", "Arts nd Deco", "+918466950960", R.drawable.claire,"ggani4997@gmail.com");
-        Contacts temp8 = new Contacts("Kapil Bishnoi", "DePP", "+919700829329", R.drawable.claire,"kapil209e@hotmail.com");
-        Contacts temp9 = new Contacts("Ramasami", "DoVE", "+919553336944", R.drawable.claire,"RamasamiXD@Gmail.com");
-        Contacts temp10 = new Contacts("Divyansh Mahajan", "DoPy", "+918184926405", R.drawable.claire,"divyanshmahajan2708@gmail.com");
-        Contacts temp11 = new Contacts("Phani Ginjupalli", "Informalz", "+917989830668", R.drawable.claire,"gphani567@gmail.com");
-        Contacts temp12 = new Contacts("Prateek Jain", "LSD", "+919948197425", R.drawable.claire,"11prateek55@gmail.com");
-        Contacts temp13 = new Contacts("Prithvi Raj", "Firewallz", "+919010526899", R.drawable.claire,"prudhviraj@gmail.com");
+        Contacts temp1 = new Contacts("Keshav Kedarnath", "President", "+917997030001", R.drawable.keshav_app,"kedarnath.keshav@gmail.com");
+        Contacts temp2 = new Contacts("Sai Sampath Balineni", "General Secretary", "+917997030002", R.drawable.sampath_app,"balineniananthasaisampath@gmail.com");
+        Contacts temp3 = new Contacts("Dhairya Patel", "Sports Secretary (B)", "+917997030005", R.drawable.dhairya_app,"dhairyapatel01@yahoo.in");
+        Contacts temp4 = new Contacts("Juhi Sharma", "Sports Secretary (G)", "+917997030006", R.drawable.juhi_app,"sharmajuhi14@gmail.com");
+        Contacts temp5 = new Contacts("Ravi Kumanduri", "Sponsorship and Marketing", "+918074176508", R.drawable.ravi_app,"ravikumanduri24oct@gmail.com");
+        Contacts temp6 = new Contacts("Hemanth Byrisetti", "Website and Creatives", "+919542979565", R.drawable.hemanth_app,"byrisettihemu@gmail.com");
+        Contacts temp7 = new Contacts("Vuchint Sutapalli", "Arts and Decoration", "+918466950960", R.drawable.vuchint_app,"ggani4997@gmail.com");
+        Contacts temp8 = new Contacts("Kapil Bishnoi", "Publicity and Public Relations", "+919700829329", R.drawable.kapil_app,"kapil209e@hotmail.com");
+        Contacts temp9 = new Contacts("Ramasami", "Visual Media", "+919553336944", R.drawable.ramu_app,"RamasamiXD@Gmail.com");
+        Contacts temp10 = new Contacts("Divyansh Mahajan", "Photography", "+918184926405", R.drawable.divyansh_app,"divyanshmahajan2708@gmail.com");
+        Contacts temp11 = new Contacts("Phani Ginjupalli", "Informalz", "+917989830668", R.drawable.phani_app,"gphani567@gmail.com");
+        Contacts temp12 = new Contacts("Prateek Jain", "Lights and Sounds", "+919948197425", R.drawable.prateek_app,"11prateek55@gmail.com");
+        Contacts temp13 = new Contacts("Prithvi Raj", "Hospitality and Accomodation", "+919010526899", R.drawable.prithvi_app ,"prudhviraj@gmail.com");
         data.add(temp1);
         data.add(temp2);
         data.add(temp3);

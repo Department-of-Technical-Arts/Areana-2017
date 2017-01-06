@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 import bphc.tech.com.arena17.R;
 import bphc.tech.com.arena17.database.DBHelper;
@@ -34,10 +33,8 @@ public class FeedItemAdapter extends RecyclerView.Adapter<FeedItemAdapter.FeedsV
         helper = new DBHelper(context);
         feedItems = helper.getAllFeedData();
         for (int i=0;i<feedItems.size();i++){
-            Log.e(TAG,feedItems.get(i).getFeedid());
             Log.e(TAG,feedItems.get(i).getMessage());
             Log.e(TAG,feedItems.get(i).getTitle());
-            Log.e(TAG,feedItems.get(i).getTime()+"");
         }
     }
 
@@ -48,20 +45,20 @@ public class FeedItemAdapter extends RecyclerView.Adapter<FeedItemAdapter.FeedsV
 
     @Override
     public void onBindViewHolder(FeedsViewHolder holder, int position) {
+        Calendar c = Calendar.getInstance();
+        long tim = feedItems.get(position).getUpdated_at();
+        c.setTimeInMillis(tim);
         holder.message.setText(feedItems.get(position).getMessage());
-        holder.time.setText(getDate(feedItems.get(position).getTime(), "dd/MM/yyyy hh:mm:ss.SSS"));
+        holder.time.setText(getTime(feedItems.get(position).getUpdated_at()));
         holder.title.setText(feedItems.get(position).getTitle());
     }
 
-    public static String getDate(long milliSeconds, String dateFormat)
-    {
-        // Create a DateFormatter object for displaying date in specified format.
-        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat, Locale.UK);
-
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
+    private String getTime(long time) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(milliSeconds);
-        return formatter.format(calendar.getTime());
+        calendar.setTimeInMillis(time);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM hh:mm a");
+        return dateFormat.format(calendar.getTime());
+
     }
 
     @Override
@@ -70,7 +67,7 @@ public class FeedItemAdapter extends RecyclerView.Adapter<FeedItemAdapter.FeedsV
     }
 
     public class FeedsViewHolder extends RecyclerView.ViewHolder{
-        TextView title,time,message;
+        TextView title,date,time,month,am,message;
         public FeedsViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.feed_card_title);

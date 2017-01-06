@@ -11,6 +11,10 @@ public class Constants {
     public static final String Arg_Event_ID = "eventID";
     public static final String RESULTS_TAG = "getResults";
     public static final String TOKEN_TAG = "addToken";
+    public static final String SPONSORS_TAG = "getSpons";
+    public static final String PREFS_TAG = "PREFS";
+    public static final String REGISTRATION_LINK = "http://bits-arena.com/Registration/";
+
     public static String[] names = {"Main Gate",
             "Bus Stop",
             "Cafetaria",
@@ -50,5 +54,4 @@ public class Constants {
             78.574010,
             78.575194,
             78.575273};
-
 }

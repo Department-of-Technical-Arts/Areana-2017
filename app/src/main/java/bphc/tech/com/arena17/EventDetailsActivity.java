@@ -50,18 +50,18 @@ public class EventDetailsActivity extends AppCompatActivity {
     int eventID;
     DBHelper helper;
     KenBurnsView eventImage;
-    static CoordinatorLayout coordinatorLayout;;
+    CoordinatorLayout baseLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_up, R.anim.stay);
         setContentView(R.layout.activity_event_details);
 
         //Instantiate all views
         eventImage = (KenBurnsView) findViewById(R.id.event_image);
         mViewPager = (ViewPager) findViewById(R.id.container);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.event_details_coordinator);
-
+        baseLayout = (CoordinatorLayout) findViewById(R.id.event_details_coordinator);
         // Setup Tab Layout
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -114,8 +114,8 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle(event.getName());
             Picasso.with(this)
                     .load(event.getImageUrl())
-                    .placeholder(R.drawable.ic_default_event_image)   // optional
-                    .error(R.drawable.ic_default_event_image)      // optional
+                    .placeholder(R.drawable.ic_home_small)   // optional
+                    .error(R.drawable.ic_home_small)      // optional
                     .into(eventImage);
         }
     }
@@ -136,6 +136,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             collapsingToolbar.setTitle("Error");
         }
     }
+
     private void makeCollapsingToolbarLayoutLooksGood(CollapsingToolbarLayout collapsingToolbarLayout) {
         try {
             final Field field = collapsingToolbarLayout.getClass().getDeclaredField("mCollapsingTextHelper");
@@ -151,20 +152,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-/*
-        getMenuInflater().inflate(R.menu.toolbar_star, menu);
-        MenuItem item = menu.findItem(R.id.menu_star);
-        if (helper.isFavourite(eventID)==0) {
-            item.setIcon(R.drawable.ic_star_not_selected);
-
-        } else {
-            item.setIcon(R.drawable.ic_star_selected);
-        }
-*/
 
         return true;
     }
@@ -173,15 +162,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
-        } /*else if (item.getItemId() == R.id.menu_star) {
-            if ((item.getIcon().getConstantState()).equals(getResources().getDrawable(R.drawable.ic_star_not_selected).getConstantState())) {
-                item.setIcon(R.drawable.ic_star_selected);
-                helper.toggleFavourite(eventID);
-            } else {
-                item.setIcon(R.drawable.ic_star_not_selected);
-                helper.toggleFavourite(eventID);
-            }
-        }*/
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -238,6 +219,8 @@ public class EventDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.stay, R.anim.slide_down);
     }
 }
 

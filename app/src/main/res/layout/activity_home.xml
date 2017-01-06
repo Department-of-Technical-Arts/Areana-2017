@@ -5,15 +5,22 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|bottom"
     tools:context="bphc.tech.com.arena17.HomeActivity">
 
     <FrameLayout
-        android:background="@drawable/homescreen"
+        android:background="@drawable/background_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:id="@+id/esteregg_view"/>
+    </FrameLayout>
 
     <LinearLayout
+        android:layout_gravity="center|bottom"
         android:orientation="vertical"
         android:layout_width="280dp"
         android:layout_height="280dp"

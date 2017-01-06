@@ -10,12 +10,14 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 import bphc.tech.com.arena17.HomeActivity;
 import bphc.tech.com.arena17.R;
+import bphc.tech.com.arena17.app.Constants;
 import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.FeedItem;
 
@@ -33,15 +35,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Log.e("Message",a.get("message"));
 
+        String response = a.get("message");
+        Gson gson = new Gson();
+        FeedItem feedItem = gson.fromJson(response,FeedItem.class);
+
         Intent intent = new Intent(this,HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        intent.putExtra(Constants.Arg_Event_ID,eventid);
+        intent.putExtra(Constants.Arg_Event_ID,feedItem.getEvent_id());
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
 
-        Log.e(TAG,remoteMessage.toString());
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
-        notificationBuilder.setContentTitle("Arena 2017");
-        notificationBuilder.setContentText(a.get("message"));
+        notificationBuilder.setContentTitle(feedItem.getTitle());
+        notificationBuilder.setContentText(feedItem.getMessage());
         notificationBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         notificationBuilder.setAutoCancel(false);
         notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
@@ -51,13 +56,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(0,notificationBuilder.build());
 
         DBHelper helper = new DBHelper(this);
-        long success = helper.addFeedRow(remoteMessage.getMessageId(),a.get("message"),a.get("message"),remoteMessage.getSentTime());
+        long success = -1;
+        if (feedItem.getType()==1) {
+             success = helper.addFeedRow(remoteMessage.getMessageId(), feedItem.getTitle(), feedItem.getMessage(),remoteMessage.getSentTime());
+        }
         ArrayList<FeedItem> feedItems = helper.getAllFeedData();
         for (int i=0;i<feedItems.size();i++){
-            Log.e(TAG,feedItems.get(i).getFeedid());
             Log.e(TAG,feedItems.get(i).getMessage());
             Log.e(TAG,feedItems.get(i).getTitle());
-            Log.e(TAG,feedItems.get(i).getTime()+"");
         }
         Log.e(TAG,success+"");
     }

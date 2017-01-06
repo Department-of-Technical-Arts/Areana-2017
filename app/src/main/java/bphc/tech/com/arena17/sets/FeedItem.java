@@ -6,22 +6,16 @@ package bphc.tech.com.arena17.sets;
 
 public class FeedItem {
 
-    String feedid,message,title;
-    long time;
+    String message,title;
+    long updated_at;
+    int type,event_id;
 
-    public FeedItem(String feedid, String message, String title, long time) {
-        this.feedid = feedid;
+    public FeedItem(String message, String title, long updated_at, int type, int event_id) {
         this.message = message;
         this.title = title;
-        this.time = time;
-    }
-
-    public String getFeedid() {
-        return feedid;
-    }
-
-    public void setFeedid(String feedid) {
-        this.feedid = feedid;
+        this.updated_at = updated_at;
+        this.type = type;
+        this.event_id = event_id;
     }
 
     public String getMessage() {
@@ -40,11 +34,27 @@ public class FeedItem {
         this.title = title;
     }
 
-    public long getTime() {
-        return time;
+    public long getUpdated_at() {
+        return updated_at;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setUpdated_at(long updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
     }
 }

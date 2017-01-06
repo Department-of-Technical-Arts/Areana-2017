@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#29ABE2</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="tab_background_selected">#19698A</color>
@@ -17,6 +17,4 @@
     <color name="schedule_purple_horizontal">#67027A</color>
     <color name="schedule_blue_vertical">#00338B</color>
     <color name="schedule_blue_horizontal">#00478B</color>
-
-
 </resources>

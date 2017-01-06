@@ -23,7 +23,7 @@ public class ShowAdActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.close_ad_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.close_ad_button).setOnClickListener(  new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();

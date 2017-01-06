@@ -6,6 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +31,7 @@ public class SelectEventAdapter extends RecyclerView.Adapter<SelectEventAdapter.
 
     private ArrayList<EventItem> items;
     private Context context;
-
+    int offset = 0;
     public SelectEventAdapter(Context context, ArrayList<EventItem> items) {
         this.context = context;
         this.items = items;
@@ -43,6 +46,14 @@ public class SelectEventAdapter extends RecyclerView.Adapter<SelectEventAdapter.
     public void onBindViewHolder(EventItemHolder holder, int position) {
         holder.image.setImageResource(items.get(position).getImage());
         holder.event.setText(items.get(position).getName());
+        Animation animation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(300);
+        animation.setInterpolator(new DecelerateInterpolator(1.5f));
+        animation.setFillAfter(true);
+        animation.setStartOffset(offset);
+        holder.itemView.startAnimation(animation);
+        offset = offset + 40;
     }
 
     @Override

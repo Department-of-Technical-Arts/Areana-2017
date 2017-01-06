@@ -17,6 +17,7 @@ import bphc.tech.com.arena17.sets.FeedItem;
 import bphc.tech.com.arena17.sets.MedalSet;
 import bphc.tech.com.arena17.sets.PrizeItem;
 import bphc.tech.com.arena17.sets.ScheduleSet;
+import bphc.tech.com.arena17.sets.SponsorSet;
 
 /**
  * Created by tejeshwar on 20/12/16.
@@ -37,6 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private final String SCHEDULE_TABLE = "schedule";
     private final String MEDAL_TABLE = "medals";
     private final String FEED_TABLE = "feed";
+    private final String SPONSORS_TABLE = "sponsor";
 
     //Column Names for Main Table
     private final String KEY_MAIN_TABLE_ID = "eventid";
@@ -78,6 +80,12 @@ public class DBHelper extends SQLiteOpenHelper {
     private final String KEY_FEED_TITLE = "title";
     private final String KEY_FEED_MESSAGE = "message";
     private final String KEY_FEED_TIME = "time";
+
+    //COLUMN NAMES FOR SPONSORS TABLE
+    private final String KEY_SPONSORS_TITLE = "title";
+    private final String KEY_SPONSORS_URL = "url";
+    private final String KEY_SPONSORS_SPONS_URL = "sponsurl";
+    private final String KEY_SPONSORS_UPDATED_AT = "updatedat";
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -177,19 +185,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return success;
     }
 
-    public ArrayList<String> getAllEvents(){
-        db = this.getWritableDatabase();
-        ArrayList<String> events = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT "+ KEY_MAIN_EVENT_NAMES+ " FROM " + EVENTS_ID_TABLE , null);
-        if (cursor.moveToFirst()) {
-            do {
-                events.add(cursor.getString(0));
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return events;
-    }
-
     public ArrayList<EventsSet> getEventData(int eventid){
         db = this.getWritableDatabase();
         Log.e("event data", eventid + "");
@@ -243,6 +238,18 @@ public class DBHelper extends SQLiteOpenHelper {
         return scheduleSets;
     }
 
+    public long addSponsorData(String title,String url,String spons_url, long update_at){
+        db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_SPONSORS_TITLE,title);
+        cv.put(KEY_SPONSORS_URL,url);
+        cv.put(KEY_SPONSORS_SPONS_URL,spons_url);
+        cv.put(KEY_SPONSORS_UPDATED_AT,update_at);
+        success = db.insert(SPONSORS_TABLE,null,cv);
+        db.close();
+        return success;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -287,15 +294,24 @@ public class DBHelper extends SQLiteOpenHelper {
         final String CREATE_FEEDS_TABLE = "CREATE TABLE IF NOT EXISTS " + FEED_TABLE + " (" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_FEED_ID + " TEXT UNIQUE, " +
+                KEY_EVENTS_ID + " INTEGER, " +
                 KEY_FEED_TITLE + " TEXT, " +
                 KEY_FEED_MESSAGE + " TEXT, " +
                 KEY_FEED_TIME + " INTEGER); ";
+
+        final String CREATE_SPONSORS_TABLE = "CREATE TABLE IF NOT EXISTS " + SPONSORS_TABLE + " (" +
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_SPONSORS_TITLE + " TEXT, " +
+                KEY_SPONSORS_URL + " TEXT UNIQUE, " +
+                KEY_SPONSORS_SPONS_URL + " TEXT, " +
+                KEY_SPONSORS_UPDATED_AT + " INTEGER); ";
 
         sqLiteDatabase.execSQL(CREATE_MAIN_TABLE);
         sqLiteDatabase.execSQL(CREATE_EVENTS_TABLE);
         sqLiteDatabase.execSQL(CREATE_SCHEDULE_TABLE);
         sqLiteDatabase.execSQL(CREATE_MEDAL_TABLE);
         sqLiteDatabase.execSQL(CREATE_FEEDS_TABLE);
+        sqLiteDatabase.execSQL(CREATE_SPONSORS_TABLE);
     }
 
     @Override
@@ -305,36 +321,8 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SCHEDULE_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MEDAL_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FEED_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SPONSORS_TABLE);
         onCreate(sqLiteDatabase);
-    }
-
-    public int isFavourite(int eventid){
-        int fav = 0;
-        db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_FAVOURITE + " FROM "+ EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID +" = '"+eventid+"'",null);
-        if (cursor.moveToNext()){
-            do {
-                fav = cursor.getInt(0);
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        return fav;
-    }
-
-    public void toggleFavourite(int eventid){
-
-        ContentValues cv = new ContentValues();
-        if (isFavourite(eventid) == 0){
-            db = this.getWritableDatabase();
-            cv.put(KEY_EVENTS_FAVOURITE,1);
-            db.update(EVENTS_TABLE,cv,KEY_EVENTS_ID+ " = '" +eventid+"' ",null);
-        }else {
-            db = this.getWritableDatabase();
-            cv.put(KEY_EVENTS_FAVOURITE,0);
-            db.update(EVENTS_TABLE,cv,KEY_EVENTS_ID+ " = '" +eventid+"' ",null);
-        }
-        db.close();
     }
 
     public LatLng getLocation(int eventid){
@@ -347,30 +335,6 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return location;
-    }
-
-    public String getPDF(int eventid){
-        String pdf =null;
-        db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_PDF + " FROM "+ EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID +" = '"+eventid+"'", null);
-        if (cursor.moveToFirst()){
-            pdf = cursor.getString(0);
-        }
-        cursor.close();
-        db.close();
-        return pdf;
-    }
-
-    public String getImage(int eventid){
-        String image = null;
-        db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_IMAGE + " FROM "+ EVENTS_TABLE + " WHERE " + KEY_EVENTS_ID +" = '"+eventid+"'", null);
-        if (cursor.moveToFirst()){
-            image = cursor.getString(0);
-        }
-        cursor.close();
-        db.close();
-        return image;
     }
 
     public long getLastEventUpdatedAt(){
@@ -400,20 +364,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return contacts;
     }
 
-    public int[] getFavouriteEvents(){
-        int[] eventids = {0};
-        int i =0;
-        db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + KEY_EVENTS_ID + " FROM " + EVENTS_TABLE + " WHERE " + KEY_EVENTS_FAVOURITE + " = '1'" ,null);
-        if (cursor.moveToFirst()){
-            do {
-                eventids[i] = cursor.getInt(0);
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        return eventids;
-    }
 
     public ArrayList<MedalSet> getMedalTally(){
         ArrayList<MedalSet> medalSets = new ArrayList<>();
@@ -435,7 +385,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM "+ FEED_TABLE,null);
         if (cursor.moveToFirst()){
             do {
-                feedItems.add(new FeedItem(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getLong(4)));
+                feedItems.add(new FeedItem(cursor.getString(4),cursor.getString(3),cursor.getLong(5),1,cursor.getInt(2)));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -455,5 +405,19 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return prizeItems;
+    }
+
+    public ArrayList<SponsorSet> getSponsorData(){
+        ArrayList<SponsorSet> sponsorSets = new ArrayList<>();
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + SPONSORS_TABLE ,null);
+        if (cursor.moveToFirst()){
+            do {
+                sponsorSets.add(new SponsorSet(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getLong(4)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return sponsorSets;
     }
 }

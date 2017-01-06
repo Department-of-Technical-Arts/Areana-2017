@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,6 +74,23 @@ public class OrganisersAdapter extends RecyclerView.Adapter<OrganisersAdapter.My
                 return false;
             }
         });
+        setAnimation(myViewHolder.itemView, i);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(MyViewHolder holder) {
+        holder.clearAnimation();
+    }
+
+    int lastPoition = -1;
+    private void setAnimation(View itemView, int i) {
+
+        if (i > lastPoition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            itemView.startAnimation(animation);
+            lastPoition = i;
+        }
     }
 
     @Override
@@ -99,7 +118,13 @@ public class OrganisersAdapter extends RecyclerView.Adapter<OrganisersAdapter.My
         public void onClick(View view) {
             clickListener.onItemClick(null,view,getAdapterPosition(),view.getId());
         }
+
+        public void clearAnimation()
+        {
+            itemView.clearAnimation();
+        }
     }
+
 
 }
 

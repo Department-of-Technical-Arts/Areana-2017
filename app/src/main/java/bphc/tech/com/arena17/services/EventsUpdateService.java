@@ -16,6 +16,8 @@ import bphc.tech.com.arena17.sets.MedalData;
 import bphc.tech.com.arena17.sets.MedalSet;
 import bphc.tech.com.arena17.sets.ScheduleData;
 import bphc.tech.com.arena17.sets.ScheduleSet;
+import bphc.tech.com.arena17.sets.SponsorData;
+import bphc.tech.com.arena17.sets.SponsorSet;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,22 +43,21 @@ public class EventsUpdateService extends IntentService {
     protected void onHandleIntent(final Intent intent) {
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        final Call<EventsData> events = apiService.getEvents(Constants.EVENTS_TAG);
+        final Call<EventsData> events = apiService.getEvents(Constants.EVENTS_TAG,0);
         events.enqueue(new Callback<EventsData>() {
             @Override
             public void onResponse(Call<EventsData> call, Response<EventsData> response) {
                 DBHelper helper = new DBHelper(getApplicationContext());
                 List<EventsSet> eventsSet = response.body().getData();
                 Log.e(TAG,eventsSet.size()+"");
-                long successID,successEvent;
                 for (int i=0;i<eventsSet.size();i++){
 //                    Log.e(TAG, Integer.parseInt(eventsSet.get(i).getGender())+"");
 
-                    successID = helper.addEventIdRow(
+                    helper.addEventIdRow(
                             eventsSet.get(i).getEventId(),
                             eventsSet.get(i).getName());
 
-                    successEvent = helper.addEventsRow(
+                    helper.addEventsRow(
                             eventsSet.get(i).getEventId(),
                             eventsSet.get(i).getName(),
                             eventsSet.get(i).getCaptainName(),
@@ -69,14 +70,13 @@ public class EventsUpdateService extends IntentService {
                             eventsSet.get(i).getPrize(),
                             eventsSet.get(i).getGender());
 
-                    Log.d(TAG,successID +"        "+ successEvent);
+//                    Log.d(TAG,successID +"        "+ successEvent);
                 }
             }
 
             @Override
             public void onFailure(Call<EventsData> call, Throwable t) {
-                Log.e(TAG,"Check your internet connection");
-//                Toast.makeText(EventsUpdateService.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
+//                Log.e(TAG,"Check your internet connection");
             }
         });
 
@@ -87,10 +87,9 @@ public class EventsUpdateService extends IntentService {
                 DBHelper helper = new DBHelper(getApplicationContext());
                 List<ScheduleSet> scheduleSets = response.body().getData();
                 Log.e(TAG,scheduleSets.size()+"");
-                long success;
                 for (int i=0;i<scheduleSets.size();i++){
 //                    Log.e(TAG, Integer.parseInt(scheduleSets.get(i).getGender())+"");
-                    success = helper.addScheduleRow(
+                    helper.addScheduleRow(
                             scheduleSets.get(i).getEventId(),
                             scheduleSets.get(i).getTime(),
                             scheduleSets.get(i).getUpdatedAt(),
@@ -100,7 +99,7 @@ public class EventsUpdateService extends IntentService {
                             scheduleSets.get(i).getDescription(),
                             scheduleSets.get(i).getVenue(),
                             scheduleSets.get(i).getRound());
-                    Log.e(TAG,success+"");
+//                    Log.e(TAG,success+"");
                 }
             }
             @Override
@@ -116,15 +115,33 @@ public class EventsUpdateService extends IntentService {
                 DBHelper helper = new DBHelper(getApplicationContext());
                 List<MedalSet> medalSets = response.body().getData();
                 Log.e(TAG,medalSets.size()+"");
-                long success;
                 for (int i = 0 ; i<medalSets.size();i++){
-                    success = helper.addMedalsRow(medalSets.get(i).getCollege(),medalSets.get(i).getGold(),medalSets.get(i).getSilver(),medalSets.get(i).getBronze());
-                    Log.e(TAG,success+"");
+                    helper.addMedalsRow(medalSets.get(i).getCollege(),medalSets.get(i).getGold(),medalSets.get(i).getSilver(),medalSets.get(i).getBronze());
+//                    Log.e(TAG,success+"");
                 }
             }
 
             @Override
             public void onFailure(Call<MedalData> call, Throwable t) {
+                Log.e(TAG,"Check your internet connection");
+            }
+        });
+
+        final Call<SponsorData> sponsorDataCall = apiService.getSponsors(Constants.SPONSORS_TAG,0);
+        sponsorDataCall.enqueue(new Callback<SponsorData>() {
+            @Override
+            public void onResponse(Call<SponsorData> call, Response<SponsorData> response) {
+                DBHelper helper = new DBHelper(getApplicationContext());
+                List<SponsorSet> sponsorSets = response.body().getData();
+                Log.e(TAG,sponsorSets.size()+"");
+                for (int i = 0 ; i<sponsorSets.size();i++){
+                    helper.addSponsorData(sponsorSets.get(i).getTitle(),sponsorSets.get(i).getUrl(),sponsorSets.get(i).getSponsUrl(),sponsorSets.get(i).getUpdatedAt());
+//                    Log.e(TAG,success+"");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SponsorData> call, Throwable t) {
                 Log.e(TAG,"Check your internet connection");
             }
         });

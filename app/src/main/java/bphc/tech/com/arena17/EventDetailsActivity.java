@@ -15,6 +15,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -183,12 +184,16 @@ public class EventDetailsActivity extends AppCompatActivity {
                 case 1: {
                     try{
                         DBHelper helper1 = new DBHelper(EventDetailsActivity.this);
+                        Log.e("Sarath","After helper");
                         int eventID1 = getIntent().getIntExtra(Constants.Arg_Event_ID, -1);
+                        Log.e("Sarath","After getIntExtra, getting into if");
                         if(helper1.getScheduleData(eventID1).size()!=0){
+                            Log.e("Sarath","Inside if");
                             return new EventScheduleFragment();
                         }
-                        else {return new NoScheduleFragment();}
+                        else {Log.e("Sarath","Inside else");return new NoScheduleFragment();}
                     }catch (Exception e){
+                        Log.e("Sarath","Inside catch");
                         return new NoScheduleFragment();
                     }
 

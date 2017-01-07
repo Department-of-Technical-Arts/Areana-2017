@@ -132,11 +132,11 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
                 ContactItem contactItem = contactItems.get(i);
                 if (i == 0) {
                     if (contactItem.getGender() == 0) {
-                        contact_name1.setText((contactItem.getName() + ", Captain (Boy's)"));
+                        contact_name1.setText((contactItem.getName() + ", Captain (Boys)"));
                         contact_number1.setText(contactItem.getPhone());
                         contact_container1.setVisibility(View.VISIBLE);
                     } else if (contactItem.getGender() == 1) {
-                        contact_name1.setText((contactItem.getName() + ", Captain (Girl's)"));
+                        contact_name1.setText((contactItem.getName() + ", Captain (Girls)"));
                         contact_number1.setText(contactItem.getPhone());
                         contact_container1.setVisibility(View.VISIBLE);
                     } else if (contactItem.getGender() == 2) {
@@ -147,11 +147,11 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
                 }
                 if (i == 1) {
                     if (contactItem.getGender() == 0) {
-                        contact_name2.setText((contactItem.getName() + ", Captain (Boy's)"));
+                        contact_name2.setText((contactItem.getName() + ", Captain (Boys)"));
                         contact_number2.setText(contactItem.getPhone());
                         contact_container2.setVisibility(View.VISIBLE);
                     } else if (contactItem.getGender() == 1) {
-                        contact_name2.setText((contactItem.getName() + ", Captain (Girl's)"));
+                        contact_name2.setText((contactItem.getName() + ", Captain (Girls)"));
                         contact_number2.setText(contactItem.getPhone());
                         contact_container2.setVisibility(View.VISIBLE);
                     } else if (contactItem.getGender() == 2) {    // this if is not needed but meh..!!
@@ -182,11 +182,11 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
                 PrizeItem prizeItem = prizeItems.get(i);
                 if(i==0){
                     if(prizeItem.getGender()==0){
-                        prize1.setText(("Total Prize Money (Boys'): " + prizeItem.getPrize()));
+                        prize1.setText(("Total Prize Money (Boys): " + prizeItem.getPrize()));
                         prize1.setVisibility(View.VISIBLE);
                     }
                     else if(prizeItem.getGender()==1){
-                        prize1.setText(("Total Prize Money (Girls'): " + prizeItem.getPrize()));
+                        prize1.setText(("Total Prize Money (Girls): " + prizeItem.getPrize()));
                         prize1.setVisibility(View.VISIBLE);
                     }
                     else if(prizeItem.getGender()==2){
@@ -197,11 +197,11 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
 
                 if(i==1) {
                     if(prizeItem.getGender()==0){
-                        prize2.setText(("Total Prize Money (Boys'): " + prizeItem.getPrize()));
+                        prize2.setText(("Total Prize Money (Boys): " + prizeItem.getPrize()));
                         prize2.setVisibility(View.VISIBLE);
                     }
                     else if(prizeItem.getGender()==1){
-                        prize2.setText(("Total Prize Money (Girls'): " + prizeItem.getPrize()));
+                        prize2.setText(("Total Prize Money (Girls): " + prizeItem.getPrize()));
                         prize2.setVisibility(View.VISIBLE);
                     }
                     else if(prizeItem.getGender()==2){  //not needed.. but meh..!!

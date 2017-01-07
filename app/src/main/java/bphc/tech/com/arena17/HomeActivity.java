@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder builder =
                         new AlertDialog.Builder(HomeActivity.this, R.style.AppCompatAlertDialogStyle);
-                builder.setTitle("About Us (ester egg)");
+                builder.setTitle("About Us\n(Easter Egg)");
                 builder.setMessage(R.string.about_us);
                 builder.setPositiveButton("OKAY, GOT IT", null);
                 builder.show();
@@ -95,7 +95,6 @@ public class HomeActivity extends AppCompatActivity {
                         //app credits
                         Toast.makeText(HomeActivity.this, "App Credits", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(HomeActivity.this,CommonActivity.class).putExtra("frag_flag",3));
-                        startService(new Intent(HomeActivity.this, SponsorsUpdateService.class));
                         break;
                     case 4:
                         //register
@@ -107,6 +106,7 @@ public class HomeActivity extends AppCompatActivity {
                         //news feed
                         Toast.makeText(HomeActivity.this, "News Feed", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(HomeActivity.this,NewsFeedActivity.class));
+                        startService(new Intent(HomeActivity.this, MedalsUpdateService.class));
                         break;
                     default:
                         //lite

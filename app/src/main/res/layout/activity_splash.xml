@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="bphc.tech.com.arena17.SplashActivity"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:text="Splash Screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

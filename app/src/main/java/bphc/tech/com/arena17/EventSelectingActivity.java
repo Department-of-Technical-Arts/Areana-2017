@@ -9,15 +9,17 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 
 import java.util.ArrayList;
 
 import bphc.tech.com.arena17.adapter.SelectEventAdapter;
 import bphc.tech.com.arena17.app.ArenaApplication;
+import bphc.tech.com.arena17.database.DBHelper;
 import bphc.tech.com.arena17.sets.EventItem;
+import bphc.tech.com.arena17.sets.ScheduleSet;
 
 public class EventSelectingActivity extends AppCompatActivity {
 
@@ -57,12 +59,27 @@ public class EventSelectingActivity extends AppCompatActivity {
         adapter = new SelectEventAdapter(this,items);
         event_select.setAdapter(adapter);
 
-        /*DBHelper helper = new DBHelper(this);
-        ArrayList<PrizeItem> prizeItems = helper.getEventPrizes(4);
+        DBHelper helper = new DBHelper(this);
+        ArrayList<ScheduleSet> prizeItems = helper.getScheduleData(1);
         for (int i=0;i<prizeItems.size();i++){
-            Log.e("prize " , prizeItems.get(i).getGender()+"");
-            Log.e("prize " , prizeItems.get(i).getPrize()+"");
-        }*/
+            Log.e(TAG,prizeItems.get(i).getEventId()+"");
+            Log.e(TAG,prizeItems.get(i).getUpdatedAt()+"");
+            Log.e(TAG,prizeItems.get(i).getSportName()+"");
+            Log.e(TAG,prizeItems.get(i).getEventDate()+"");
+            Log.e(TAG,prizeItems.get(i).getGender()+"");
+            Log.e(TAG,prizeItems.get(i).getDescription()+"");
+            Log.e(TAG,prizeItems.get(i).getVenue()+"");
+            Log.e(TAG,prizeItems.get(i).getRound()+"");
+            Log.e(TAG,prizeItems.get(i).getVs()+"");
+            Log.e(TAG,prizeItems.get(i).getEventId()+"");
+            Log.e(TAG,prizeItems.get(i).getEventId()+"");
+            Log.e(TAG,prizeItems.get(i).getEventId()+"");
+            Log.e(TAG,prizeItems.get(i).getEventId()+"");
+            Log.e(TAG,prizeItems.get(i).getEventId()+"");
+            Log.e(TAG,prizeItems.get(i).getEventId()+"");
+            Log.e("prize " , prizeItems.get(i).getSportName()+"");
+            Log.e("prize " , prizeItems.get(i).getTime()+"");
+        }
     }
 
     private boolean isNetworkAvailable() {

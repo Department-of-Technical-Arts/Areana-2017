@@ -220,7 +220,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
         Log.e("schedule data", eventid + "");
         ArrayList<ScheduleSet> scheduleSets = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ SCHEDULE_TABLE +" WHERE " + KEY_SCHEDULE_EVENT_ID + " = '"+ eventid +"'",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ SCHEDULE_TABLE +" WHERE " + KEY_SCHEDULE_EVENT_ID + " = '"+ eventid +"' ORDER BY " + KEY_SCHEDULE_DATE +" ASC ",null);
         if (cursor.moveToFirst()){
             do {
                 scheduleSets.add(new ScheduleSet(

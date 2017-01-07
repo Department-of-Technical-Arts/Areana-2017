@@ -48,7 +48,7 @@ public class SelectEventAdapter extends RecyclerView.Adapter<SelectEventAdapter.
         holder.event.setText(items.get(position).getName());
         Animation animation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(300);
+        animation.setDuration(500);
         animation.setInterpolator(new DecelerateInterpolator(1.5f));
         animation.setFillAfter(true);
         animation.setStartOffset(offset);

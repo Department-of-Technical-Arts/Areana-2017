@@ -59,7 +59,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:text="25th Jan"
+                            android:text="29th Jan"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 

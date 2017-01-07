@@ -1,6 +1,7 @@
 package bphc.tech.com.arena17.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,12 +31,13 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
     }
 
     class ScheduleViewHolder extends RecyclerView.ViewHolder {
-        TextView vertical, description, time, date, round, vsTag, title;
+        TextView description, time, date, round, vsTag;
+        CardView vertical;
         LinearLayout horizontal;
 
         public ScheduleViewHolder(View itemView) {
             super(itemView);
-            //vertical = (TextView) itemView.findViewById(R.id.schedule_vertical_text_view);
+            vertical = (CardView) itemView.findViewById(R.id.schedule_vertical_card_view);
             description = (TextView) itemView.findViewById(R.id.schedule_description);
             time = (TextView) itemView.findViewById(R.id.schedule_time);
             date = (TextView) itemView.findViewById(R.id.schedule_date);
@@ -94,17 +96,22 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
                 }
             }
 
-            int cnum = position % 2;
+           /* int cnum = position % 2;
             if (cnum == 1) {
                 holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_green_horizontal));
 //            holder.vertical.setBackgroundColor(context.getResources().getColor(R.color.schedule_green_vertical));
-            }/*else if(cnum==2){ // for other colors to be displayed
+            }else if(cnum==2){ // for other colors to be displayed
             holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_purple_horizontal));
             holder.vertical.setBackgroundColor(context.getResources().getColor(R.color.schedule_purple_vertical));
         } else if(cnum==3){
             holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_blue_horizontal));
             holder.vertical.setBackgroundColor(context.getResources().getColor(R.color.schedule_blue_vertical));
         }*/
+            int date = myDate(list.get(position).getEventDate());
+            if (date%2==1){
+                holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_green_horizontal));
+                holder.vertical.setCardBackgroundColor(context.getResources().getColor(R.color.schedule_green_horizontal));
+            }
 
         }
 
@@ -154,5 +161,15 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
 
         return (Integer.toString(mDay) + " Jan");
     }
+    int myDate(long millis) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(millis);
+//        int mYear = calendar.get(Calendar.YEAR);
+//        int mMonth = calendar.get(Calendar.MONTH);
+        int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        return (mDay);
+    }
+
 
 }

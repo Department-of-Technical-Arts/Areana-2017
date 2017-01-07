@@ -4,16 +4,40 @@
     android:id="@+id/activity_splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.tech.com.arena17.SplashActivity"
-    android:background="@color/colorPrimaryDark">
+    tools:context="org.arenatest.bits.arena_test.SplashActivity"
+    android:background="@color/colorPrimaryDark"
+    android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/splash_title"
-        android:gravity="center"
-        android:textSize="40sp"
-        android:textColor="@color/white"
-        android:text="Splash Screen"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        <com.flaviofaria.kenburnsview.KenBurnsView
+            android:alpha="0.2"
+            android:src="@drawable/splash_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="240dp" />
+
+        <TextView
+            android:id="@+id/splash_title"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            android:text="where legends are born"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </RelativeLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.tech.com.arena17.fragments.MedalTallyFragment">
+    tools:context="org.arenatest.bits.arena_test.fragments.MedalTallyFragment">
 
 
     <RelativeLayout

@@ -2,18 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.tech.com.arena17.fragments.FeedFragment">
+    tools:context="org.arenatest.bits.arena_test.fragments.FeedFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
             android:visibility="gone"
             android:id="@+id/no_feed"
-            android:textSize="30dp"
+            android:textSize="22dp"
+            android:textStyle="italic"
             android:gravity="center"
-            android:text="NO FEEDS YET !!! \n YOU WILL BE NOTIFIED SOON"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="No feeds yet !!! \n You will be notified soon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/feed_recycler"
             android:layout_margin="8dp"

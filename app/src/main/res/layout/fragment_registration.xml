@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.tech.com.arena17.fragments.RegistrationFragment">
+    tools:context="org.arenatest.bits.arena_test.fragments.RegistrationFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,8 +22,8 @@
             <TextView
                 android:layout_margin="16dp"
                 android:textAlignment="center"
-                android:textSize="22sp"
-                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textStyle="italic"
                 android:text="No Internet Connection !!!!"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.tech.com.arena17.CommonActivity">
+    tools:context="org.arenatest.bits.arena_test.CommonActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/container_appbar"

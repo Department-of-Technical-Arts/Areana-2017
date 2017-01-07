@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#212121"
-    tools:context="bphc.tech.com.arena17.EventSelectingActivity"
+    tools:context="org.arenatest.bits.arena_test.EventSelectingActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 

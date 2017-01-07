@@ -3,11 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    tools:context="bphc.tech.com.arena17.fragments.SponsorsFragment">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/sponsor_recycler"
+    tools:context="org.arenatest.bits.arena_test.fragments.SponsorsFragment">
+    <RelativeLayout
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/no_sponsors"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:text="No sponsors yet !!! \n Will be updated soon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/sponsor_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 </FrameLayout>

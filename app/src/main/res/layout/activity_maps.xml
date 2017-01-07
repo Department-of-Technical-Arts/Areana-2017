@@ -5,7 +5,7 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.tech.com.arena17.MapsActivity" >
+    tools:context="org.arenatest.bits.arena_test.MapsActivity" >
     <com.quinny898.library.persistentsearch.SearchBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

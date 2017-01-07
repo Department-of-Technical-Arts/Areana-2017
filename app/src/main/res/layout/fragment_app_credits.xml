@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    tools:context="bphc.tech.com.arena17.fragments.AppCreditsFragment">
+    tools:context="org.arenatest.bits.arena_test.fragments.AppCreditsFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/tejeshwar"
+                            android:src="@drawable/tejeswar"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
                             android:paddingTop="20dp"/>
@@ -149,7 +149,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/sravanij"
+                            android:src="@drawable/sravani"
                             android:id="@+id/contact_image"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
@@ -322,7 +322,7 @@
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/default_pic"
+                            android:src="@drawable/adarsh"
                             android:scaleType="centerCrop"
                             android:padding="8dp"
                             android:paddingTop="20dp"/>

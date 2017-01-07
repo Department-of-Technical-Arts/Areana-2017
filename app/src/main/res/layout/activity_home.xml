@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.tech.com.arena17.HomeActivity">
+    tools:context="org.arenatest.bits.arena_test.HomeActivity">
 
     <FrameLayout
         android:background="@drawable/background_home"
@@ -15,7 +15,7 @@
             android:layout_marginTop="32dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="180dp"
-            android:layout_height="100dp"
+            android:layout_height="180dp"
             android:id="@+id/esteregg_view"/>
     </FrameLayout>
 
@@ -26,7 +26,7 @@
         android:layout_height="280dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
-        <bphc.tech.com.arena17.views.CircularMenuLayout
+        <org.arenatest.bits.arena_test.views.CircularMenuLayout
             android:id="@+id/id_menulayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,6 +45,6 @@
                     android:background="@drawable/sport" />
 
             </RelativeLayout>
-        </bphc.tech.com.arena17.views.CircularMenuLayout>
+        </org.arenatest.bits.arena_test.views.CircularMenuLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -8,6 +8,7 @@
     android:background="@color/colorPrimaryDark">
 
     <TextView
+        android:id="@+id/splash_title"
         android:gravity="center"
         android:textSize="40sp"
         android:textColor="@color/white"

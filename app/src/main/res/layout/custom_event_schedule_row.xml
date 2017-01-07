@@ -6,20 +6,22 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-        app:cardCornerRadius="4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/schedule_card_background"
             android:orientation="horizontal">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_vertical_card_view"
-                app:cardBackgroundColor="@color/schedule_red_vertical"
-                android:layout_width="30dp"
-                android:layout_height="match_parent">
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                app:cardBackgroundColor="@color/schedule_red_vertical">
 
                 <!--<bphc.tech.com.arena17.views.VerticalTextView
                     android:id="@+id/schedule_day"

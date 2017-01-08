@@ -22,6 +22,8 @@ public class CommonActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_up, R.anim.stay);
         setContentView(R.layout.activity_common);
+//        startActivity(new Intent(this, MedalsUpdateService.class));
+//        startActivity(new Intent(this, SponsorsUpdateService.class));
         toolbar = (Toolbar) findViewById(R.id.container_toolbar);
         setSupportActionBar(toolbar);
 

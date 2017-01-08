@@ -1,5 +1,6 @@
 package org.arenatest.bits.arena_test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.arenatest.bits.arena_test.fragments.CaptainsFragment;
 import org.arenatest.bits.arena_test.fragments.OrganisersFragment;
+import org.arenatest.bits.arena_test.services.MedalsUpdateService;
+import org.arenatest.bits.arena_test.services.SponsorsUpdateService;
 
 public class ContactsActivity extends AppCompatActivity {
 
@@ -32,7 +35,8 @@ public class ContactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_up, R.anim.stay);
         setContentView(R.layout.activity_contact);
-
+        startService(new Intent(this, SponsorsUpdateService.class));
+        startService(new Intent(this, MedalsUpdateService.class));
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.container);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.arenatest.bits.arena_test.app.ArenaApplication;
+import org.arenatest.bits.arena_test.services.EventsUpdateService;
 import org.arenatest.bits.arena_test.services.MedalsUpdateService;
 import org.arenatest.bits.arena_test.services.SponsorsUpdateService;
 import org.arenatest.bits.arena_test.views.CircularMenuLayout;
@@ -50,13 +51,14 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        startService(new Intent(this, EventsUpdateService.class));
         textView = (TextView) findViewById(R.id.esteregg_view);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder =
                         new AlertDialog.Builder(HomeActivity.this, R.style.AppCompatAlertDialogStyle);
-                builder.setTitle("About Us\n(Easter Egg)");
+                builder.setTitle("About Us");
                 builder.setMessage(R.string.about_us);
                 builder.setPositiveButton("OKAY, GOT IT", null);
                 builder.show();

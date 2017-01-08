@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         search = (SearchBox) findViewById(R.id.searchbox);
-        for(int x = 0; x < Constants.names.length; x++){
+        for(int x = Constants.names.length-1 ; x >=0 ; x--){
             SearchResult option = new SearchResult(Constants.names[x],getResources().getDrawable(android.R.drawable.ic_menu_directions));
             search.addSearchable(option);
         }
@@ -95,11 +95,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-
     private void goToTheLocation(String searchTerm) {
         searchTerm = searchTerm.toLowerCase();
         LatLng latLng = null;
-        for (int i = 0; i < Constants.names.length; i++) {
+        for (int i = Constants.names.length-1; i >=0 ; i--) {
             if (searchTerm.equals(Constants.names[i].toLowerCase())) {
                 latLng = new LatLng(Constants.latitudes[i], Constants.longitudes[i]);
             }
@@ -123,7 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.e("search",s);
         s=s.toLowerCase();
         LatLng latLng =null;
-        for(int i=0;i<Constants.names.length;i++){
+        for(int i=Constants.names.length-1;i>=0;i--){
             if(s.equals(Constants.names[i].toLowerCase())){
                 latLng=new LatLng(Constants.latitudes[i],Constants.longitudes[i]);
             }

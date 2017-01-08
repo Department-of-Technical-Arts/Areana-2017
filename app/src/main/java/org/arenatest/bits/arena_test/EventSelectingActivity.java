@@ -13,13 +13,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-
 import org.arenatest.bits.arena_test.adapter.SelectEventAdapter;
 import org.arenatest.bits.arena_test.app.ArenaApplication;
 import org.arenatest.bits.arena_test.database.DBHelper;
+import org.arenatest.bits.arena_test.services.MedalsUpdateService;
 import org.arenatest.bits.arena_test.sets.EventItem;
 import org.arenatest.bits.arena_test.sets.ScheduleSet;
+
+import java.util.ArrayList;
 
 public class EventSelectingActivity extends AppCompatActivity {
 
@@ -35,6 +36,8 @@ public class EventSelectingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_up, R.anim.stay);
         setContentView(R.layout.activity_event_selecting);
+
+        startService(new Intent(this, MedalsUpdateService.class));
         runnable = new Runnable() {
             @Override
             public void run() {

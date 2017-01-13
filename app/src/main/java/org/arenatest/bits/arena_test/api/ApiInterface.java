@@ -2,9 +2,11 @@ package org.arenatest.bits.arena_test.api;
 
 import org.arenatest.bits.arena_test.sets.EventsData;
 import org.arenatest.bits.arena_test.sets.MedalData;
+import org.arenatest.bits.arena_test.sets.RegisterSet;
 import org.arenatest.bits.arena_test.sets.ScheduleData;
 import org.arenatest.bits.arena_test.sets.SponsorData;
 import org.arenatest.bits.arena_test.sets.TokenItem;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -19,7 +21,7 @@ public interface ApiInterface {
     Call<ScheduleData> getSchedule(@Query("tag") String tag, @Query("updated_at") long updated_at);
 
     @GET("api/")
-    Call<EventsData> getEvents(@Query("tag") String tag, @Query("updated_at") long updated_at );
+    Call<EventsData> getEvents(@Query("tag") String tag, @Query("updated_at") long updated_at);
 
     @GET("api/")
     Call<MedalData> getResults(@Query("tag") String tag, @Query("updated_at") long updated_at);
@@ -29,4 +31,7 @@ public interface ApiInterface {
 
     @GET("api/")
     Call<SponsorData> getSponsors(@Query("tag") String tag, @Query("updated_at") long updated_at);
+
+    @GET("api/")
+    Call<RegisterSet> postRegister(@Query("tag") String tag, @Query("name") String name,@Query("email") String email,@Query("phone") String phone, @Query("college") String college, @Query("sport") String sport);
 }

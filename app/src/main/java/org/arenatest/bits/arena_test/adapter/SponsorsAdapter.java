@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-
 import org.arenatest.bits.arena_test.R;
 import org.arenatest.bits.arena_test.sets.SponsorSet;
+
+import java.util.ArrayList;
 
 /**
  * Created by tejeshwar on 6/1/17.
@@ -43,8 +43,9 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
     @Override
     public void onBindViewHolder(SponsorViewHolder holder, int position) {
         holder.textView.setText(sponsorSets.get(position).getTitle());
-        Picasso.with(context).load(sponsorSets.get(position).getUrl()).into(holder.image);
-
+        if (!sponsorSets.get(position).getUrl().isEmpty()) {
+            Picasso.with(context).load(sponsorSets.get(position).getUrl()).into(holder.image);
+        }
         Animation animation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(300);

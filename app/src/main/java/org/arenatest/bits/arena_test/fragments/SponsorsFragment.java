@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import org.arenatest.bits.arena_test.R;
 import org.arenatest.bits.arena_test.adapter.SponsorsAdapter;
 import org.arenatest.bits.arena_test.database.DBHelper;
 import org.arenatest.bits.arena_test.sets.SponsorSet;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,7 +74,9 @@ public class SponsorsFragment extends Fragment implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         DBHelper helper = new DBHelper(getActivity());
         ArrayList<SponsorSet> sponsorSets = helper.getSponsorData();
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(sponsorSets.get(i).getSponsUrl()));
-        startActivity(browserIntent);
+        if (!sponsorSets.get(i).getSponsUrl().isEmpty()) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(sponsorSets.get(i).getSponsUrl()));
+            startActivity(browserIntent);
+        }
     }
 }

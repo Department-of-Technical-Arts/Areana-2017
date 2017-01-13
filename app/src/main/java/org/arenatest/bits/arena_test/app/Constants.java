@@ -14,6 +14,7 @@ public class Constants {
     public static final String SPONSORS_TAG = "getSpons";
     public static final String PREFS_TAG = "PREFS";
     public static final String REGISTRATION_LINK = "http://bits-arena.com/Registration/";
+    public static final String REGISTRATION_TAG = "regUser";
 
     public static String[] names = {
             "Main Gate",

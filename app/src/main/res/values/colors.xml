@@ -17,4 +17,5 @@
     <color name="schedule_purple_horizontal">#67027A</color>
     <color name="schedule_blue_vertical">#00338B</color>
     <color name="schedule_blue_horizontal">#00478B</color>
+    <color name="google_material_red">#F44336</color>
 </resources>

@@ -28,5 +28,9 @@
         android:layout_below="@id/container_appbar"
         android:id="@+id/common_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
+
+
 </RelativeLayout>

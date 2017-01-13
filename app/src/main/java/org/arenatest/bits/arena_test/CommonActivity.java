@@ -1,6 +1,7 @@
 package org.arenatest.bits.arena_test;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import org.arenatest.bits.arena_test.fragments.SponsorsFragment;
 
 public class CommonActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
+    FloatingActionButton register;
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

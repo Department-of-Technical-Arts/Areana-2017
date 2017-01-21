@@ -8,14 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import org.arenatest.bits.arena_test.R;
+import org.arenatest.bits.arena_test.sets.ScheduleSet;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-
-import org.arenatest.bits.arena_test.R;
-import org.arenatest.bits.arena_test.sets.ScheduleSet;
 
 /**
  * Created by sarath on 29-12-2016.
@@ -89,7 +88,6 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
                 holder.vertical.setCardBackgroundColor(context.getResources().getColor(R.color.schedule_green_vertical));
             }
             else {
-
                 holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_red_horizontal));
                 holder.vertical.setCardBackgroundColor(context.getResources().getColor(R.color.schedule_red_vertical));
                 holder.date.setText(getDate(list.get(position).getEventDate()));
@@ -167,6 +165,12 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
 //        int mYear = calendar.get(Calendar.YEAR);
 //        int mMonth = calendar.get(Calendar.MONTH);
         int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        if (mDay == 21){
+            return (Integer.toString(mDay) + "st Jan");
+        }
+        if(mDay == 22){
+            return (Integer.toString(mDay) + "nd Jan");
+        }
         if(mDay == 23){
             return (Integer.toString(mDay) + "rd Jan");
         }

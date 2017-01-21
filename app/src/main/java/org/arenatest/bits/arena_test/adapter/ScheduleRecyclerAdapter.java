@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -80,7 +81,21 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
 
             //date and time
             holder.time.setText(getTime(list.get(position).getEventDate()));
-            holder.date.setText(getDate(list.get(position).getEventDate()));
+
+            int date = myDate(list.get(position).getEventDate());
+            if (date%2==1){
+                holder.date.setText(getDate(list.get(position).getEventDate()));
+                holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_green_horizontal));
+                holder.vertical.setCardBackgroundColor(context.getResources().getColor(R.color.schedule_green_vertical));
+            }
+            else {
+
+                holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_red_horizontal));
+                holder.vertical.setCardBackgroundColor(context.getResources().getColor(R.color.schedule_red_vertical));
+                holder.date.setText(getDate(list.get(position).getEventDate()));
+            }
+
+
 
 
             //for vs tag:
@@ -106,11 +121,6 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
             holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_blue_horizontal));
             holder.vertical.setBackgroundColor(context.getResources().getColor(R.color.schedule_blue_vertical));
         }*/
-            int date = myDate(list.get(position).getEventDate());
-            if (date%2==1){
-                holder.horizontal.setBackgroundColor(context.getResources().getColor(R.color.schedule_green_horizontal));
-                holder.vertical.setCardBackgroundColor(context.getResources().getColor(R.color.schedule_green_horizontal));
-            }
 
         }
 
@@ -157,8 +167,14 @@ public class ScheduleRecyclerAdapter extends RecyclerView.Adapter<ScheduleRecycl
 //        int mYear = calendar.get(Calendar.YEAR);
 //        int mMonth = calendar.get(Calendar.MONTH);
         int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        if(mDay == 23){
+            return (Integer.toString(mDay) + "rd Jan");
+        }
+        else {
+            return (Integer.toString(mDay) + "th Jan");
+        }
 
-        return (Integer.toString(mDay) + " Jan");
+
     }
     int myDate(long millis) {
         Calendar calendar = Calendar.getInstance();
